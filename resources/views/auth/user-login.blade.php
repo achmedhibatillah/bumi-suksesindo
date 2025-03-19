@@ -18,8 +18,13 @@
                         <label for="" class="ms-2 text-clr2 fsz-12">Remember me</label>
                     </div>
                 </div>
-                <div class="mb-4 d-flex justify-content-center">
-                    <button class="btn btn-clr2 btn-sm rounded-s fw-bold" style="width:140px;">Log In</button>
+                <div class="mb-4 row m-0 p-0">
+                    <div class="col-6 m-0 p-0 pe-1">
+                        <button class="btn btn-clr2 btn-sm rounded-s fw-bold w-100">Log In</button>
+                    </div>
+                    <div class="col-6 m-0 p-0 ps-1">
+                        <a href="{{ url('registrasi') }}" class="btn btn-outline-clr2 btn-sm rounded-s fw- w-100">Registrasi</a>
+                    </div>
                 </div>
             </form>
         </div>

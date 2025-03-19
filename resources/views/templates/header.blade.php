@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Departemen Ilmu Politik Universitas Brawijaya @if(isset($title)) {{ ' | ' . $title }} @else {{ '' }} @endif</title>
+    <title>Rizki Mewing</title>
 
     <link rel="icon" href="{{ asset('assets/images/static/favicon-logo.png') }}" type="image/png">
 
@@ -21,5 +21,8 @@
 
     @vite(['resources/css/bootstrap-framework.css'])
     @vite(['resources/css/main-style.css'])
+
+    <link href="{{ url('assets/css/bootstap-framework.css') }}" rel="stylesheet">
+    <link href="{{ url('assets/css/main-style.css') }}" rel="stylesheet">
 </head>
 <body>
