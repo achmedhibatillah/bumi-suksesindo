@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Users;
 use App\Models\UsersTemp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -97,6 +99,28 @@ class AuthController extends Controller
             'user_password.min' => 'Password minimal harus 6 karakter.',
             'user_password.max' => 'Password maksimal 12 karakter.',
             'user_password.confirmed' => 'Konfirmasi password tidak cocok.',
-        ]);        
+        ]);
+
+        if (!empty(Users::where('user_email', $request->user_email)->first())) {
+            return 'dah';
+        }
+        
+        $logic = new LogicController();
+        $userData = [
+            'user_id' => $logic->generateUniqueId('users', 'user_id'),
+            'user_nama' => $request->user_nama,
+            'user_email' => $request->user_email,
+            'user_password' => Hash::make($request->user_password),
+            'user_foto' => $request->user_foto,
+        ];
+
+        Users::create($userData);
+
+        session([
+            'is_user' => true,
+            'user' => $userData,
+        ]);
+
+        return redirect()->to('homepage');
     }
 }

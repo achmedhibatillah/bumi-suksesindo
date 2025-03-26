@@ -114,6 +114,7 @@
 .img-hover { transition: transform 0.3s ease-in-out; }
 .img-hover:hover { transform: scale(1.05); }
 .text-entered { white-space: normal !important; word-wrap: break-word; overflow-wrap: break-word; }
+.scrollbar-hidden { scrollbar-width: none; } .scrollbar-hidden::-webkit-scrollbar { display: none; }
 
 .translate-center { transform: translate(-50%, -50%); } .translate-right { transform: translate(50%, 0); } .translate-right-top { transform: translate(50%, -50%); } .translate-right-bottom { transform: translate(50%, 50%); } .translate-left { transform: translate(-50%, 0); } .translate-left-top { transform: translate(-50%, -50%); } .translate-left-bottom { transform: translate(-50%, 50%); }
 

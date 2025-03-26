@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('users', function(Blueprint $table) {
             $table->string('user_id', 35)->primary();
             $table->string('user_nama', 255)->nullable();
+            $table->string('user_email', 255)->nullable();
             $table->string('user_password', 255)->nullable();
             $table->string('user_foto', 255)->nullable();
+            $table->timestamps();
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::drop('users');
     }
 };
