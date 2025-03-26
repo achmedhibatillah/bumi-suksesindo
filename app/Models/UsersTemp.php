@@ -13,6 +13,6 @@ class UsersTemp extends Model
     protected $fillable = [
         'ut_id',
         'ut_email',
-        'ut_otp'
+        'ut_url_login'
     ];
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rizki Mewing</title>
+    <title>Departemen Ilmu Politik Universitas Brawijaya @if(isset($title)) {{ ' | ' . $title }} @else {{ '' }} @endif</title>
 
     <link rel="icon" href="{{ asset('assets/images/static/favicon-logo.png') }}" type="image/png">
 
@@ -19,10 +19,10 @@
     <!-- Fas Fa Icon -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-    @vite(['resources/css/bootstrap-framework.css'])
-    @vite(['resources/css/main-style.css'])
+    <!-- vite(['resources/css/bootstrap-framework.css']) -->
+    <!-- vite(['resources/css/main-style.css']) -->
 
-    <link href="{{ url('assets/css/bootstap-framework.css') }}" rel="stylesheet">
+    <link href="{{ url('assets/css/bootstrap-framework.css') }}" rel="stylesheet">
     <link href="{{ url('assets/css/main-style.css') }}" rel="stylesheet">
 </head>
 <body>

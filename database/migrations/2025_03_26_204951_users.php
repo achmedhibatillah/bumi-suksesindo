@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users_temp', function(Blueprint $table) {
-            $table->string('ut_id', 35)->primary();
-            $table->string('ut_email', 355);
-            $table->string('ut_url_login', 35);
-            $table->timestamps();
+        Schema::create('users', function(Blueprint $table) {
+            $table->string('user_id', 35)->primary();
+            $table->string('user_nama', 255)->nullable();
+            $table->string('user_password', 255)->nullable();
+            $table->string('user_foto', 255)->nullable();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::drop('users_temp');
+        //
     }
 };

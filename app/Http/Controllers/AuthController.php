@@ -23,7 +23,7 @@ class AuthController extends Controller
         view('templates/footer');
     }
 
-    public function user_registrasi_a1(Request $request)
+    public function user_registrasi_init(Request $request)
     {
         $request->validate([
             'email' => 'required|email|max:355'
@@ -36,26 +36,67 @@ class AuthController extends Controller
         $logic = new LogicController();
 
         if ($user = UsersTemp::where('ut_email', $request->email)->first()) {
-            $data = ['ut_otp' => $logic->generateUniqueOtp('users_temp', 'ut_otp')];
+            $data = ['ut_url_login' => $logic->generateUniqueId('users_temp', 'ut_url_login')];
             UsersTemp::where('ut_id', $user->ut_id)->update($data);
-            return redirect()->to('registrasi/' . $user->ut_id);
+            return redirect()->to('registrasi/informasi/' . $user->ut_id);
         }
 
         $data = [
             'ut_id' => $logic->generateUniqueId('users_temp', 'ut_id'),
             'ut_email' => $request->email,
-            'ut_otp' => $logic->generateUniqueOtp('users_temp', 'ut_otp'),
+            'ut_url_login' => $logic->generateUniqueId('users_temp', 'ut_url_login'),
         ];
 
         UsersTemp::create($data);
 
-        return redirect()->to('registrasi/' . $data['ut_id']);
+        return redirect()->to('registrasi/informasi/' . $data['ut_id']);
     }
 
-    public function user_registrasi_otp($ut_id)
+    public function user_registrasi_informasi($ut_id)
     {
         if (empty(UsersTemp::where('ut_id', $ut_id)->first())) {
             return redirect()->to('registrasi')->with('error', 'Silakan masukkan email.');
-        } 
+        }
+
+        $email = UsersTemp::where('ut_id', $ut_id)->first()->ut_email;
+
+        return
+        view('templates/header') . 
+        view('auth/user-registrasi-informasi', [
+            'email' => $email,
+        ]) . 
+        view('templates/footer');
+    }
+
+    public function user_registrasi_verifikasi($ut_url_login)
+    {
+        if (empty(UsersTemp::where('ut_url_login', $ut_url_login)->first())) {
+            return redirect()->to('registrasi')->with('error', 'Url autentikasi tidak valid.');
+        }
+
+        $ut = UsersTemp::where('ut_url_login', $ut_url_login)->first();
+
+        return
+        view('templates/header') . 
+        view('auth/user-registrasi-identitas', [
+            'ut' => $ut,
+        ]) . 
+        view('templates/footer');
+    }
+
+    public function user_registrasi_save(Request $request)
+    {
+        $request->validate([
+            'user_email' => 'required|email',
+            'user_nama' => 'required|max:255',
+            'user_password' => 'required|min:6|max:12|confirmed',
+        ], [
+            'user_nama.required' => 'Bagian ini harus diisi.',
+            'user_nama.max' => 'Maksimal 255 karakter.',
+            'user_password.required' => 'Password wajib diisi.',
+            'user_password.min' => 'Password minimal harus 6 karakter.',
+            'user_password.max' => 'Password maksimal 12 karakter.',
+            'user_password.confirmed' => 'Konfirmasi password tidak cocok.',
+        ]);        
     }
 }
