@@ -5,16 +5,61 @@ namespace App\Http\Controllers;
 use App\Models\Users;
 use App\Models\UsersTemp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
+    public function root_login()
+    {
+        return
+        view('templates/header') . 
+        view('auth/root-login') . 
+        view('templates/footer');
+    }
+
+    public function root_login_verifikasi(Request $request)
+    {
+        if ($request->token === env('ROOT_TOKEN')) {
+            Session::flush();
+            $request->session()->put('is_root', true);
+            return redirect('root/index');
+        }
+
+        return redirect()->back()->with('error', 'Token tidak valid.');
+    }
+
     public function user_login()
     {
         return
         view('templates/header') . 
         view('auth/user-login') . 
         view('templates/footer');
+    }
+
+    public function user_login_verifikasi(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ], [
+            'email.required' => 'Email harus diisi.',
+            'email.email' => 'Email tidak valid.',
+            'password.required' => 'Password harus diisi.',
+        ]);
+    
+        $user = Users::where('user_email', $request->email)->first();
+    
+        if ($user && Hash::check($request->password, $user->user_password)) {
+            session([
+                'is_user' => true,
+                'user' => $user,
+            ]);
+            return redirect('/homepage');
+        }
+    
+        return redirect()->back()->with('error', 'Email atau password salah.');
     }
 
     public function user_registrasi()
@@ -102,7 +147,8 @@ class AuthController extends Controller
         ]);
 
         if (!empty(Users::where('user_email', $request->user_email)->first())) {
-            return 'dah';
+            // return 'dah';
+            Users::where('user_email', $request->user_email)->delete();
         }
         
         $logic = new LogicController();

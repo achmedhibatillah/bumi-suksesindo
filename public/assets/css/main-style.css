@@ -27,6 +27,7 @@
 .text-clr3 { color: var(--clr3); }
 .text-clr4 { color: var(--clr4); } 
 .text-clr5 { color: var(--clr5); } 
+.text-clrsec { color: var(--clrsec); } 
 
 .text-clrdang { color: var(--clrdang); } 
 
