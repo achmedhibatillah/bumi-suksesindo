@@ -3,4 +3,4 @@
 @endif
 @if(session()->has('error'))
 <div class="alert alert-danger text-center fsz-12">{{ session()->get('error') }}</div>
-@endif
+@endif 
