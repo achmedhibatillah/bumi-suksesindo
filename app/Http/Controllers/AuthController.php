@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
-    public function root_login()
+    public function root_login() 
     {
         return
         view('templates/header') . 
