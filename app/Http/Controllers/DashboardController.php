@@ -71,4 +71,19 @@ class DashboardController extends Controller
         view('templates/footbar-user') . 
         view('templates/footer');
     }
+
+    public function presensi()
+    {
+        $data = [
+            'title' => 'Riwayat Presensi',
+            'page' => 'riwayat-presensi',
+        ];
+
+        return
+        view('templates/header', $data) . 
+        view('templates/sidebar-user', $data) . 
+        view('dashboard/presensi-riwayat') . 
+        view('templates/footbar-user') . 
+        view('templates/footer');
+    }
 }

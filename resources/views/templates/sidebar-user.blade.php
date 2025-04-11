@@ -18,7 +18,7 @@
                         <p class="menu-resp-text text-light m-0 ms-3">Homepage</p>
                     </div>
                 </a>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == '') ? 'sidebar-active' : '' }}" href="{{url('riwayat-presensi')}}">
+                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'riwayat-presensi') ? 'sidebar-active' : '' }}" href="{{url('riwayat-presensi')}}">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">
                             <img src="{{ asset('assets/images/static/icons/absensi.png') }}" style="height:22px;width:16px;">

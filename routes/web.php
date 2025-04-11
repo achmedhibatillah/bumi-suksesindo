@@ -26,6 +26,8 @@ Route::middleware([UserMiddleware::class])->group(function () {
     Route::get('homepage', [DashboardController::class, 'index']);
     Route::post('presensi-masuk', [PresensiController::class, 'rekap_masuk']);
     Route::post('presensi-pulang', [PresensiController::class, 'rekap_pulang']);
+
+    Route::get('riwayat-presensi', [DashboardController::class, 'presensi']);
 });
 
 Route::get('root', function() { return redirect()->to('root/login'); });
