@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Presensi;
 use App\Models\Sesi;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -59,12 +61,6 @@ class RootController extends Controller
             ])->withInput();
         }
 
-        if (now()->gt($request->tgl)) {
-            return redirect()->back()->withErrors([
-                'tgl' => 'Tanggal sudah terlewat.'
-            ])->withInput();
-        }
-
         $sesi_masuk = Carbon::parse("{$request->tgl} {$request->jam_masuk}");
         $sesi_pulang = Carbon::parse("{$request->tgl} {$request->jam_pulang}");
     
@@ -78,6 +74,16 @@ class RootController extends Controller
         ];
 
         Sesi::create($data);
+
+        $usersData = User::get();
+
+        foreach($usersData as $x) {
+            Presensi::create([
+                'presensi_id' => $logic->generateUniqueId('presensi', 'presensi_id'),
+                'user_id' => $x->user_id,
+                'presensi_status' => 4
+            ]);
+        }
 
         return redirect()->back()->with('success', 'Sesi baru berhasil ditambahkan.');
     }

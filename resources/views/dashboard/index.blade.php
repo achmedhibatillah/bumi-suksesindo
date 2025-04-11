@@ -7,40 +7,68 @@
             </div>
             <div class="bg-light row m-0">
                 <div class="col-6 m-0 p-0">
-                    <div class="card hover cursor-pointer rounded-xs m-0 ms-3 me-1 my-3 p-0 {{ ($masuk == null) ? 'bg-clr4' : 'bg-secondary' }}" data-bs-toggle="modal" data-bs-target="{{ ($masuk == null) ? '#modalMasuk' : '#modalWarningMasuk' }}">
-                        <div class="row text-light m-0 p-0">
-                            <div class="col-3 m-0 p-0 py-2 d-flex justify-content-center align-items-center">
-                                <img src="{{ url('assets/images/static/icons/dashboard-masuk.png') }}" class="w-75">
-                            </div>
-                            <div class="col-9 m-0 p-0 py-2 d-flex flex-column justify-content-center align-items-center">
-                                <p class="text-center m-0">MASUK</p>
-                                @if($masuk !== null)
-                                    <p class="text-center m-0 fw-bold">{{ $masuk }}</p>
-                                @else
-                                    <p class="text-center m-0 fw-bold clock-now"></p>
-                                @endif
+                    @if($issetPresensi == true)
+                        <div class="card hover cursor-pointer rounded-xs m-0 ms-3 me-1 my-3 p-0 {{ ($masuk == null) ? 'bg-clr4' : 'bg-secondary' }}" data-bs-toggle="modal" data-bs-target="{{ ($masuk == null) ? '#modalMasuk' : '#modalWarningMasuk' }}">
+                            <div class="row text-light m-0 p-0">
+                                <div class="col-3 m-0 p-0 py-2 d-flex justify-content-center align-items-center">
+                                    <img src="{{ url('assets/images/static/icons/dashboard-masuk.png') }}" class="w-75">
+                                </div>
+                                <div class="col-9 m-0 p-0 py-2 d-flex flex-column justify-content-center align-items-center">
+                                    <p class="text-center m-0">MASUK</p>
+                                    @if($masuk !== null)
+                                        <p class="text-center m-0 fw-bold">{{ $masuk }}</p>
+                                    @else
+                                        <p class="text-center m-0 fw-bold clock-now"></p>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @else 
+                        <div class="card hover cursor-pointer rounded-xs m-0 ms-3 me-1 my-3 p-0 bg-secondary" data-bs-toggle="modal" data-bs-target="#modalWarningMasuk">
+                            <div class="row text-light m-0 p-0">
+                                <div class="col-3 m-0 p-0 py-2 d-flex justify-content-center align-items-center">
+                                    <img src="{{ url('assets/images/static/icons/dashboard-masuk.png') }}" class="w-75">
+                                </div>
+                                <div class="col-9 m-0 p-0 py-2 d-flex flex-column justify-content-center align-items-center">
+                                    <p class="text-center m-0">MASUK</p>
+                                    <p class="text-center m-0 fw-bold clock-now"></p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif 
                 </div>
                 <div class="col-6 m-0 p-0">
-                    <div class="card hover cursor-pointer rounded-xs m-0 me-3 ms-1 my-3 p-0 {{ ($pulang == null) ? 'bg-clr5' : 'bg-secondary' }}" data-bs-toggle="modal" data-bs-target="{{ ($pulang == null) ? '#modalPulang' : '#modalWarningPulang' }}">
-                        <div class="row text-light m-0 p-0">
-                            <div class="col-3 m-0 p-0 py-2 d-flex justify-content-center align-items-center">
-                                <img src="{{ url('assets/images/static/icons/dashboard-masuk.png') }}" class="w-75">
-                            </div>
-                            <div class="col-9 m-0 p-0 py-2 d-flex flex-column justify-content-center align-items-center">
-                                <p class="text-center m-0">PULANG</p>
-                                @if($pulang == false)
-                                <p class="text-center m-0 fw-bold clock-now"></p>
-                                @elseif($pulang !== null)
-                                    <p class="text-center m-0 fw-bold">{{ $pulang }}</p>
-                                @else 
+                    @if($issetPresensi == true)
+                        <div class="card hover cursor-pointer rounded-xs m-0 me-3 ms-1 my-3 p-0 {{ ($pulang == null) ? 'bg-clr5' : 'bg-secondary' }}" data-bs-toggle="modal" data-bs-target="{{ ($pulang == null) ? '#modalPulang' : '#modalWarningPulang' }}">
+                            <div class="row text-light m-0 p-0">
+                                <div class="col-3 m-0 p-0 py-2 d-flex justify-content-center align-items-center">
+                                    <img src="{{ url('assets/images/static/icons/dashboard-masuk.png') }}" class="w-75">
+                                </div>
+                                <div class="col-9 m-0 p-0 py-2 d-flex flex-column justify-content-center align-items-center">
+                                    <p class="text-center m-0">PULANG</p>
+                                    @if($pulang == false)
                                     <p class="text-center m-0 fw-bold clock-now"></p>
-                                @endif                            
+                                    @elseif($pulang !== null)
+                                        <p class="text-center m-0 fw-bold">{{ $pulang }}</p>
+                                    @else 
+                                        <p class="text-center m-0 fw-bold clock-now"></p>
+                                    @endif                            
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @else 
+                        <div class="card hover cursor-pointer rounded-xs m-0 me-3 ms-1 my-3 p-0 bg-secondary" data-bs-toggle="modal" data-bs-target="#modalWarningPulang">
+                            <div class="row text-light m-0 p-0">
+                                <div class="col-3 m-0 p-0 py-2 d-flex justify-content-center align-items-center">
+                                    <img src="{{ url('assets/images/static/icons/dashboard-masuk.png') }}" class="w-75">
+                                </div>
+                                <div class="col-9 m-0 p-0 py-2 d-flex flex-column justify-content-center align-items-center">
+                                    <p class="text-center m-0">PULANG</p>
+                                    <p class="text-center m-0 fw-bold clock-now"></p>
+                                </div>
+                            </div>
+                        </div>                    
+                    @endif
                 </div>
             </div>
         </div>
@@ -133,7 +161,7 @@
                 <button type="button" class="ms-auto hover bg-warning border-secondary text-dark rounded-circle he-28 we-28" data-bs-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">
-                Anda tidak dapat melakukan presensi lebih dari satu kali dalam satu hari.
+                Tidak dapat mengisi data.
             </div>
         </div>
     </div>
@@ -183,7 +211,7 @@
                 <button type="button" class="ms-auto hover bg-warning border-secondary text-dark rounded-circle he-28 we-28" data-bs-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">
-                Anda tidak dapat melakukan presensi lebih dari satu kali dalam satu hari.
+                Tidak dapat mengisi data.
             </div>
         </div>
     </div>
