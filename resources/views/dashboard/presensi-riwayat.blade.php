@@ -2,15 +2,20 @@
     <div class="col-md-6 m-0 p-0">
         <p class="text-clr2 fw-bold">Filter Data Presensi</p>
         <div class="card m-0 p-3 shadow-m rounded-s">
-            <form action="{{ url('riwayat-presensi') }}" method="post">
+            <form action="{{ url('riwayat-presensi') }}" method="get">
                 @csrf 
                 <div class="mb-3">
                     <label for="" class="text-clr2">Tanggal</label>
-                    <input type="date" name="tgl_mulai" id="tgl_mulai" class="form-control">
+                    <input type="date" name="tgl_mulai" id="tgl_mulai" class="form-control"
+                    value="{{ $tgl['tgl_mulai'] }}">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="text-clr2">Tanggal</label>
+                    <input type="date" name="tgl_selesai" id="tgl_selesai" class="form-control"
+                    value="{{ $tgl['tgl_selesai'] }}">
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-clr2 px-4">
-                        <img src="{{ asset('assets/images/static/icons/filter.png') }}" class="he-14">Filter</button>
+                    <button type="submit" class="btn btn-clr2 px-4"><img src="{{ asset('assets/images/static/icons/filter.png') }}" class="he-14">Filter</button>
                 </div>
             </form>
         </div>

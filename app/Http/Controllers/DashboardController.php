@@ -79,10 +79,18 @@ class DashboardController extends Controller
             'page' => 'riwayat-presensi',
         ];
         
-        $presensiData = Presensi::getFilteredPresensi(session('user')['user_id'], '03/01/2025', '12/02/2025');
+        $presensiData = Presensi::getFilteredPresensi(session('user')['user_id'], Carbon::now()->subDays(30), Carbon::now());
+        $tgl = [
+            'tgl_mulai' => Carbon::now()->subDays(30)->toDateString(),
+            'tgl_selesai' => Carbon::now()->toDateString(),
+        ];
 
         if ($request->has('tgl_mulai') && $request->has('tgl_selesai')) {
-            $presensiData = Presensi::getFilteredPresensi(session('user')['user_id'], '04/02/2025');
+            $presensiData = Presensi::getFilteredPresensi(session('user')['user_id'], $request->tgl_mulai, $request->tgl_selesai);
+            $tgl = [
+                'tgl_mulai' => $request->tgl_mulai,
+                'tgl_selesai' => $request->tgl_selesai,
+            ];
         }
 
         return
@@ -90,6 +98,7 @@ class DashboardController extends Controller
         view('templates/sidebar-user', $data) . 
         view('dashboard/presensi-riwayat', [
             'presensi' => $presensiData,
+            'tgl' => $tgl,
         ]) . 
         view('templates/footbar-user') . 
         view('templates/footer');
