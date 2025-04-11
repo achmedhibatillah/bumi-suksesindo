@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="col-9 m-0 p-0 py-2 d-flex flex-column justify-content-center align-items-center">
                                     <p class="text-center m-0">MASUK</p>
-                                    <p class="text-center m-0 fw-bold clock-now"></p>
+                                    <p class="text-center m-0 fw-bold">***</p>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="col-9 m-0 p-0 py-2 d-flex flex-column justify-content-center align-items-center">
                                     <p class="text-center m-0">PULANG</p>
-                                    <p class="text-center m-0 fw-bold clock-now"></p>
+                                    <p class="text-center m-0 fw-bold">***</p>
                                 </div>
                             </div>
                         </div>                    
@@ -80,7 +80,7 @@
             </div>
             <div class="bg-light d-flex justify-content-center py-5 px-3">
                 <div class="d-flex align-items-end">
-                    <h3 class="text-clr2 m-0 fw-bold">3</h3>
+                    <h3 class="text-clr2 m-0 fw-bold">{{ $accumulative['total_shift'] }}</h3>
                     <p class="m-0 mb-1 fsz-10 ms-1 text-clr3">Kali</p>
                 </div>
             </div>
@@ -93,7 +93,7 @@
             </div>
             <div class="bg-light d-flex justify-content-center py-5 px-3">
                 <div class="d-flex align-items-end">
-                    <h3 class="text-clr2 m-0 fw-bold">3</h3>
+                    <h3 class="text-clr2 m-0 fw-bold">{{ $accumulative['total_izin'] }}</h3>
                     <p class="m-0 mb-1 fsz-10 ms-1 text-clr3">Kali</p>
                 </div>
             </div>
@@ -106,9 +106,9 @@
             </div>
             <div class="bg-light d-flex justify-content-center py-5 px-3">
                 <div class="d-flex align-items-end">
-                    <h3 class="text-clr2 m-0 fw-bold">1</h3>
+                    <h3 class="text-clr2 m-0 fw-bold">{{ $accumulative['total_telat']['jam'] }}</h3>
                     <p class="m-0 mb-1 fsz-10 ms-1 text-clr3">Jam</p>
-                    <h3 class="text-clr2 m-0 fw-bold">23</h3>
+                    <h3 class="text-clr2 m-0 fw-bold">{{ $accumulative['total_telat']['menit'] }}</h3>
                     <p class="m-0 mb-1 fsz-10 ms-1 text-clr3">Menit</p>
                 </div>
             </div>

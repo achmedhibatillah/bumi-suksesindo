@@ -19,7 +19,6 @@ class DashboardController extends Controller
         $sesiData = Sesi::whereRaw('sesi_masuk - INTERVAL 1 HOUR <= ?', [now()])->where('sesi_pulang', '>=', now())->first();
 
         if (isset($sesiData)) {
-            // Presensi dibuka 1 jam sebelum sesi_masuk dimulai
             $issetPresensi = true;
             
             $presensiExist = Presensi::whereDate('created_at', Carbon::today())->where('user_id', session('user')['user_id'])->where('presensi_status', '!=', 4)->exists();
@@ -41,6 +40,24 @@ class DashboardController extends Controller
 
         $presensiData = Presensi::getAllInOneMonthByUser(session('user')['user_id']);
 
+        $accumulative = [
+            'total_shift' => Presensi::where('user_id', session('user')['user_id'])
+                ->whereMonth('created_at', Carbon::now()->month)
+                ->where(function($q) {
+                    $q->where('presensi_status', 1)
+                    ->orWhere('presensi_status', 4);
+                })->count(),
+            'total_izin' => Presensi::where('user_id', session('user')['user_id'])
+                ->whereMonth('created_at', Carbon::now()->month)
+                ->where(function($q) {
+                    $q->where('presensi_status', 3);
+                })->count(),
+            'total_telat' => [
+                'jam' => 0,
+                'menit' => 0,
+            ]
+        ];
+
         return
         view('templates/header', $data) . 
         view('templates/sidebar-user', $data) . 
@@ -48,6 +65,7 @@ class DashboardController extends Controller
             'issetPresensi' => $issetPresensi,
             'masuk' => $masuk,
             'pulang' => $pulang,
+            'accumulative' => $accumulative,
             'presensi' => $presensiData
         ]) . 
         view('templates/footbar-user') . 
