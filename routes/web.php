@@ -33,6 +33,8 @@ Route::get('root/login', [AuthController::class, 'root_login']);
 Route::post('root/login', [AuthController::class, 'root_login_verifikasi']);
 Route::middleware([RootMiddleware::class])->group(function () {
     Route::get('root/index', [RootController::class, 'index']);
+    Route::get('root/sesi/{slug}', [RootController::class, 'sesi_detail']);
 
     Route::post('root/sesi/add', [RootController::class, 'sesi_add']);
+    Route::post('root/sesi/del', [RootController::class, 'sesi_del']);
 });

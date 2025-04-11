@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sesi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RootController extends Controller
 {
     public function index()
     {
-        $sesiData = Sesi::get();
+        $sesiData = Sesi::getAllSesi();
 
         return
         view('templates/header') . 
@@ -19,29 +20,71 @@ class RootController extends Controller
         view('templates/footer');
     }
 
+    public function sesi_detail($sesi_id)
+    {
+        $sesiData = Sesi::getDetailSesi($sesi_id);
+
+        return
+        view('templates/header') . 
+        view('root/sesi-detail', [
+            'sesi' => $sesiData,
+        ]) . 
+        view('templates/footer');
+    }
+
     public function sesi_add(Request $request)
     {
         $request->validate([
-            'sesi_masuk' => 'required',
-            'sesi_pulang' => 'required',
+            'tgl' => 'required',
+            'jam_masuk' => 'required',
+            'jam_pulang' => 'required',
             'sesi_deskripsi' => 'max:255',
         ], [
-            'sesi_masuk.required' => 'Waktu mulai harus diisi.',
-            'sesi_pulang.required' => 'Waktu pulang harus diisi.',
+            'tgl.required' => 'Tanggal harus diisi.',
+            'jam_masuk.required' => 'Waktu masuk harus diisi.',
+            'jam_pulang.required' => 'Waktu pulang harus diisi.',
             'sesi_deskripsi.max' => 'Maksimal 255 karakter.'
         ]);
 
-        $logic = new LogicController();
+        if ($request->jam_masuk >= $request->jam_pulang) {
+            return redirect()->back()->withErrors([
+                'jam_masuk' => 'Jam masuk tidak boleh melebihi jam pulang.'
+            ])->withInput();
+        }
 
+        $sesiTodayStatus = Sesi::whereDate('sesi_masuk', $request->tgl)->exists();
+        if ($sesiTodayStatus) {
+            return redirect()->back()->withErrors([
+                'tgl' => 'Tanggal sudah tersedia.'
+            ])->withInput();
+        }
+
+        if (now()->gt($request->tgl)) {
+            return redirect()->back()->withErrors([
+                'tgl' => 'Tanggal sudah terlewat.'
+            ])->withInput();
+        }
+
+        $sesi_masuk = Carbon::parse("{$request->tgl} {$request->jam_masuk}");
+        $sesi_pulang = Carbon::parse("{$request->tgl} {$request->jam_pulang}");
+    
+        $logic = new LogicController();
+    
         $data = [
             'sesi_id' => $logic->generateUniqueId('sesi', 'sesi_id'),
             'sesi_deskripsi' => $request->sesi_deskripsi,
-            'sesi_masuk' => $request->sesi_masuk,
-            'sesi_pulang' => $request->sesi_pulang, 
+            'sesi_masuk' => $sesi_masuk,
+            'sesi_pulang' => $sesi_pulang,
         ];
 
         Sesi::create($data);
 
         return redirect()->back()->with('success', 'Sesi baru berhasil ditambahkan.');
+    }
+
+    public function sesi_del(Request $request)
+    {
+        Sesi::where('sesi_id', $request->sesi_id)->delete();
+        return redirect()->back()->with('success', 'Anda berhasil menghapus sesi dengan ID #' . $request->sesi_id);
     }
 }
