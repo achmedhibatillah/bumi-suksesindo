@@ -1,7 +1,7 @@
 <div class="row m-0 p-0">
     <div class="col-md-6 m-0 p-0">
         <p class="text-clr2 fw-bold">Filter Data Presensi</p>
-        <div class="card m-0 p-3 shadow-m rounded-s">
+        <div class="card m-0 p-3 shadow-m rounded-s mb-4">
             <form action="{{ url('riwayat-presensi') }}" method="get">
                 @csrf 
                 <div class="mb-3">

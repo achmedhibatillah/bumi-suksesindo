@@ -103,4 +103,19 @@ class DashboardController extends Controller
         view('templates/footbar-user') . 
         view('templates/footer');
     }
+
+    public function lembur()
+    {
+        $data = [
+            'title' => 'Laporan Lembur',
+            'page' => 'lembur',
+        ];
+
+        return
+        view('templates/header', $data) . 
+        view('templates/sidebar-user', $data) . 
+        view('dashboard/lembur') . 
+        view('templates/footbar-user') . 
+        view('templates/footer');
+    }
 }

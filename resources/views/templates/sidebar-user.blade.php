@@ -26,7 +26,7 @@
                         <p class="menu-resp-text text-light m-0 ms-3">Riwayat Presensi</p>
                     </div>
                 </a>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == '') ? 'sidebar-active' : '' }}" href="{{url('laporan-lembur')}}">
+                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'lembur') ? 'sidebar-active' : '' }}" href="{{url('laporan-lembur')}}">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">
                             <img src="{{ asset('assets/images/static/icons/lembur.png') }}" style="height:22px;width:16px;">
