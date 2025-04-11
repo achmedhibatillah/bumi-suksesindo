@@ -33,12 +33,18 @@
                     <th>Keterangan</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Senin, 28 AGustus 2020</td>
-                        <td>12:00 WIB</td>
-                        <td>Hadir</td>
-                        <td>-</td>
-                    </tr>
+                    <?php $i = 1 ?>
+                    @foreach($presensi as $x)
+                        <tr>
+                            <td>{{ $i }}</td>
+                            <td>{{ $x['presensi_tanggal'] }}</td>
+                            <td>{{ $x['presensi_pukul'] }}</td>
+                            <td>{{ $x['presensi_status'] }}</td>
+                            <td>{{ $x['presensi_keterangan_masuk'] }}</td>
+                            <td>{{ $x['presensi_keterangan_pulang'] }}</td>
+                        </tr>
+                    <?php $i++ ?>
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -72,17 +72,25 @@ class DashboardController extends Controller
         view('templates/footer');
     }
 
-    public function presensi()
+    public function presensi(Request $request)
     {
         $data = [
             'title' => 'Riwayat Presensi',
             'page' => 'riwayat-presensi',
         ];
+        
+        $presensiData = Presensi::getFilteredPresensi(session('user')['user_id'], '03/01/2025', '12/02/2025');
+
+        if ($request->has('tgl_mulai') && $request->has('tgl_selesai')) {
+            $presensiData = Presensi::getFilteredPresensi(session('user')['user_id'], '04/02/2025');
+        }
 
         return
         view('templates/header', $data) . 
         view('templates/sidebar-user', $data) . 
-        view('dashboard/presensi-riwayat') . 
+        view('dashboard/presensi-riwayat', [
+            'presensi' => $presensiData,
+        ]) . 
         view('templates/footbar-user') . 
         view('templates/footer');
     }
