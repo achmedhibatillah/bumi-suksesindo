@@ -83,7 +83,7 @@
             </div>
         </div>
         <div class="mt-1 m-0 p-0 overflow-y-scroll overflow-x-hidden" style="height:92vh;">
-            <div class="m-0 p-3 mt-5">
+            <div class="m-0 p-3 mt-5 mt-md-3">
 
 <style>
 .sidebar-button:hover { filter: brightness(80%); }

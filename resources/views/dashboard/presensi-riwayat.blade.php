@@ -29,9 +29,10 @@
         <div class="bg-clr2 m-0 p-3">
             <p class="text-light fw-bold m-0">Riwayat shift</p>
         </div>
-        <div class="p-3">
+        <div class="p-3 w-100 overflow-scroll scrollbar-hidden">
             <table class="table">
                 <thead class="table-secondary">
+                    <th>No.</th>
                     <th>Tanggal</th>
                     <th>Pukul</th>
                     <th>Status</th>
@@ -45,8 +46,7 @@
                             <td>{{ $x['presensi_tanggal'] }}</td>
                             <td>{{ $x['presensi_pukul'] }}</td>
                             <td>{{ $x['presensi_status'] }}</td>
-                            <td>{{ $x['presensi_keterangan_masuk'] }}</td>
-                            <td>{{ $x['presensi_keterangan_pulang'] }}</td>
+                            <td>{{ $x['presensi_keterangan_masuk'] }} {{ $x['presensi_keterangan_pulang'] }}</td>
                         </tr>
                     <?php $i++ ?>
                     @endforeach
