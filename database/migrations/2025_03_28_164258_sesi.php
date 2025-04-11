@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('sesi', function(Blueprint $table) {
             $table->string('sesi_id', 35)->primary();
             $table->string('sesi_deskripsi', 255)->nullable();
-            $table->dateTime('sesi_mulai')->nullable();
+            $table->dateTime('sesi_masuk')->nullable();
             $table->dateTime('sesi_pulang')->nullable();
+            $table->timestamps();
         });
     }
 

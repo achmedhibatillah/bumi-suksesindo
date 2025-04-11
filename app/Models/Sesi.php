@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Container\Attributes\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Sesi extends Model
@@ -16,4 +17,11 @@ class Sesi extends Model
         'sesi_masuk',
         'sesi_pulang',
     ];
+
+    public function getAllSesi()
+    {
+        return [
+
+        ];
+    }
 }
