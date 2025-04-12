@@ -90,6 +90,9 @@ class RootController extends Controller
 
     public function sesi_del(Request $request)
     {
+        $sesiData = Sesi::where('sesi_id', $request->sesi_id)->first();
+        
+        Presensi::whereDate('created_at', $sesiData->created_at->toDateString())->delete();
         Sesi::where('sesi_id', $request->sesi_id)->delete();
         return redirect()->back()->with('success', 'Anda berhasil menghapus sesi dengan ID #' . $request->sesi_id);
     }
