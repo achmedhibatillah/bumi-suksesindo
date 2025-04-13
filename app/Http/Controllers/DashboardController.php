@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Presensi;
 use App\Models\Sesi;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -111,10 +112,14 @@ class DashboardController extends Controller
             'page' => 'lembur',
         ];
 
+        $user = User::where('user_id', session('user')['user_id'])->first();
+
         return
         view('templates/header', $data) . 
         view('templates/sidebar-user', $data) . 
-        view('dashboard/lembur') . 
+        view('dashboard/lembur', [
+            'user' => $user
+        ]) . 
         view('templates/footbar-user') . 
         view('templates/footer');
     }
