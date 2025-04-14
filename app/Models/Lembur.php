@@ -22,10 +22,11 @@ class Lembur extends Model
 
     public static function getLemburByUser($user_id)
     {
-        return self::where('user_id', $user_id)
-        ->orderBy('created_at', 'desc')
-        ->paginate(10)
-        ->map(function ($lembur) {
+        $paginator = self::where('user_id', $user_id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+    
+        $paginator->getCollection()->transform(function ($lembur) {
             return [
                 'lembur_id' => $lembur->lembur_id,
                 'lembur_tgl' => $lembur->lembur_tgl,
@@ -37,5 +38,8 @@ class Lembur extends Model
                 'updated_at' => $lembur->updated_at,
             ];
         });
+    
+        return $paginator;
     }
+    
 }

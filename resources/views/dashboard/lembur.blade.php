@@ -71,5 +71,8 @@
                 </tr>
             @endforeach
         </table>
+        <div class="d-flex justify-content-end">
+            @include('templates/pagination', ['xxx' => $lembur])
+        </div>
     </div>
 </div>
