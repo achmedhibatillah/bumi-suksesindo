@@ -1,4 +1,4 @@
-<div class="card rounded-m overflow-hidden m-0 p-0">
+<div class="card rounded-m overflow-hidden m-0 p-0 mb-3">
     <div class="bg-clr2 text-light p-3">
         <p class="m-0 fw-bold">Formulir Pengajuan Lembur</p>
     </div>
@@ -46,3 +46,7 @@
         </form>
     </div>
 </div>
+
+@include('templates/flashmessage')
+
+<div class="card overflow-hidden rounded-m"></div>

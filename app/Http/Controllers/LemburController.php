@@ -44,6 +44,7 @@ class LemburController extends Controller
         ];
 
         Lembur::create($lemburData);
+
+        return redirect()->back()->with('success', 'Berhasil mengajukan permintaan lembur.');
     }
-    
 }

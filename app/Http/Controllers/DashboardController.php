@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lembur;
 use App\Models\Presensi;
 use App\Models\Sesi;
 use App\Models\User;
@@ -113,12 +114,14 @@ class DashboardController extends Controller
         ];
 
         $user = User::where('user_id', session('user')['user_id'])->first();
+        $lembur = Lembur::where('user_id', session('user')['user_id'])->get();
 
         return
         view('templates/header', $data) . 
         view('templates/sidebar-user', $data) . 
         view('dashboard/lembur', [
-            'user' => $user
+            'user' => $user,
+            'lembur' => $lembur,
         ]) . 
         view('templates/footbar-user') . 
         view('templates/footer');
