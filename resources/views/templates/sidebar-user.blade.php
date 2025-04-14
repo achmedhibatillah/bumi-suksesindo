@@ -10,7 +10,8 @@
             </div>
             <div class="d-flex flex-column justify-content-center mt-5">
                 <p class="text-light mb-4 mx-4">MENU</p>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'homepage') ? 'sidebar-active' : '' }}" href="{{url('homepage')}}">
+                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'homepage') ? 'sidebar-active' : '' }}" href="{{url('homepage')}}"
+                data-bs-toggle="tooltip" title="Homepage">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">
                             <img src="{{ asset('assets/images/static/icons/homepage.png') }}" style="height:19px;width:19.4px;">
@@ -18,7 +19,8 @@
                         <p class="menu-resp-text text-light m-0 ms-3">Homepage</p>
                     </div>
                 </a>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'riwayat-presensi') ? 'sidebar-active' : '' }}" href="{{url('riwayat-presensi')}}">
+                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'riwayat-presensi') ? 'sidebar-active' : '' }}" href="{{url('riwayat-presensi')}}"
+                data-bs-toggle="tooltip" title="Riwayat Presensi">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">
                             <img src="{{ asset('assets/images/static/icons/absensi.png') }}" style="height:22px;width:16px;">
@@ -26,7 +28,8 @@
                         <p class="menu-resp-text text-light m-0 ms-3">Riwayat Presensi</p>
                     </div>
                 </a>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'lembur') ? 'sidebar-active' : '' }}" href="{{url('laporan-lembur')}}">
+                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'lembur') ? 'sidebar-active' : '' }}" href="{{url('laporan-lembur')}}"
+                data-bs-toggle="tooltip" title="Laporan Lembur">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">
                             <img src="{{ asset('assets/images/static/icons/lembur.png') }}" style="height:22px;width:16px;">
@@ -34,7 +37,8 @@
                         <p class="menu-resp-text text-light m-0 ms-3">Laporan Lembur</p>
                     </div>
                 </a>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == '') ? 'sidebar-active' : '' }}" href="{{url('izin-cuti')}}">
+                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == '') ? 'sidebar-active' : '' }}" href="{{url('izin-cuti')}}"
+                data-bs-toggle="tooltip" title="Izin Cuti">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">
                             <img src="{{ asset('assets/images/static/icons/cuti.png') }}" style="height:22px;width:16px;">
@@ -42,7 +46,8 @@
                         <p class="menu-resp-text text-light m-0 ms-3">Izin Cuti</p>
                     </div>
                 </a>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == '') ? 'sidebar-active' : '' }}" href="{{url('kalender-perusahaan')}}">
+                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == '') ? 'sidebar-active' : '' }}" href="{{url('kalender-perusahaan')}}"
+                data-bs-toggle="tooltip" title="Kalender Perusahaan">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">
                             <img src="{{ asset('assets/images/static/icons/kalender.png') }}" style="height:20px;width:18px;">
