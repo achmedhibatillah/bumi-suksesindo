@@ -114,7 +114,7 @@ class DashboardController extends Controller
         ];
 
         $user = User::where('user_id', session('user')['user_id'])->first();
-        $lembur = Lembur::where('user_id', session('user')['user_id'])->get();
+        $lembur = Lembur::getLemburByUser(session('user')['user_id']);
 
         return
         view('templates/header', $data) . 

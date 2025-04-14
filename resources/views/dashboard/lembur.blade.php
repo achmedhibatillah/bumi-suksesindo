@@ -49,4 +49,27 @@
 
 @include('templates/flashmessage')
 
-<div class="card overflow-hidden rounded-m"></div>
+<div class="card overflow-hidden rounded-m">
+    <div class="bg-clr2 text-light p-3">
+        <p class="m-0 fw-bold">Riwayat Lembur</p>
+    </div>
+    <div class="p-3 w-100 overflow-x-scroll">
+        <table class="table">
+            <thead>
+                <th>No</th>
+                <th>Tanggal pengajuan</th>
+                <th>Jam mulai</th>
+                <th>Jam selesai</th>
+                <th>Durasi</th>
+                <th>Status</th>
+                <th>Catatan</th>
+            </thead>
+            <?php $i = 1 ?>
+            @foreach($lembur as $x)
+                <tr>
+                    <td>{{ $x['lembur_tgl'] }}</td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
+</div>
