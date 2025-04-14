@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('lembur_catatan', 350);
             $table->integer('lembur_status')->default(0);
             $table->string('user_id', 35);
+            $table->timestamps();
 
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
         });
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schmea::drop('lembur');
+        Schema::drop('lembur');
     }
 };

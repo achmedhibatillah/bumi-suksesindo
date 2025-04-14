@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lembur;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
@@ -32,6 +33,17 @@ class LemburController extends Controller
             return back()->withErrors(['lembur_mulai' => 'Jam mulai harus lebih kecil dari jam selesai.'])->withInput();
         }
     
+        $logic = new LogicController();
+        $lemburData = [
+            'lembur_id' => $logic->generateUniqueId('lembur', 'lembur_id'),
+            'lembur_tgl' => $request->lembur_tgl,
+            'lembur_mulai' => $request->lembur_mulai,
+            'lembur_selesai' => $request->lembur_selesai,
+            'lembur_catatan' => $request->lembur_catatan,
+            'user_id' => session('user')['user_id'],
+        ];
+
+        Lembur::create($lemburData);
     }
     
 }
