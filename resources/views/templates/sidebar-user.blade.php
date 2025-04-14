@@ -37,7 +37,7 @@
                         <p class="menu-resp-text text-light m-0 ms-3">Laporan Lembur</p>
                     </div>
                 </a>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == '') ? 'sidebar-active' : '' }}" href="{{url('izin-cuti')}}"
+                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'cuti') ? 'sidebar-active' : '' }}" href="{{url('izin-cuti')}}"
                 data-bs-toggle="tooltip" title="Izin Cuti">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">
@@ -46,7 +46,7 @@
                         <p class="menu-resp-text text-light m-0 ms-3">Izin Cuti</p>
                     </div>
                 </a>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == '') ? 'sidebar-active' : '' }}" href="{{url('kalender-perusahaan')}}"
+                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'kalender') ? 'sidebar-active' : '' }}" href="{{url('kalender-perusahaan')}}"
                 data-bs-toggle="tooltip" title="Kalender Perusahaan">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">

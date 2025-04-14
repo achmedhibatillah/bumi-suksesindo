@@ -34,6 +34,8 @@ Route::middleware([UserMiddleware::class])->group(function () {
     Route::post('lembur/request', [LemburController::class, 'request']);
 
     Route::get('izin-cuti', [DashboardController::class, 'cuti']);
+
+    Route::get('kalender-perusahaan', [DashboardController::class, 'kalender']);
 });
 
 Route::get('root', function() { return redirect()->to('root/login'); });

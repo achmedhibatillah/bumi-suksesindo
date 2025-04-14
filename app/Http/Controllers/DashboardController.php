@@ -130,13 +130,35 @@ class DashboardController extends Controller
 
     public function cuti()
     {
+        $data = [
+            'title' => 'Izin Cuti',
+            'page' => 'cuti',
+        ];
 
-        $user = Users::where('user_id ', session('user')['user_id'])->first();
+        $user = User::where('user_id', session('user')['user_id'])->first();
 
         return
-        view('templates/header') . 
-        view('templates/sidebar-user') . 
-        view('home/isi') . 
+        view('templates/header', $data) . 
+        view('templates/sidebar-user', $data) . 
+        view('dashboard/cuti') . 
+        view('templates/footbar-user') . 
+        view('templates/footer');
+    }
+
+    public function kalender()
+    {
+        $data = [
+            'title' => 'Kalender Perusahaan',
+            'page' => 'kalender',
+        ];
+
+        $user = User::where('user_id', session('user')['user_id'])->first();
+
+        return
+        view('templates/header', $data) . 
+        view('templates/sidebar-user', $data) . 
+        view('dashboard/kalender') . 
+        view('templates/footbar-user') . 
         view('templates/footer');
     }
 }
