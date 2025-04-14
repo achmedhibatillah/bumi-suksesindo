@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\LemburController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\RootController;
 use App\Http\Middleware\RootMiddleware;
@@ -30,6 +31,7 @@ Route::middleware([UserMiddleware::class])->group(function () {
     Route::get('riwayat-presensi', [DashboardController::class, 'presensi']);
 
     Route::get('laporan-lembur', [DashboardController::class, 'lembur']);
+    Route::post('lembur/request', [LemburController::class, 'request']);
 });
 
 Route::get('root', function() { return redirect()->to('root/login'); });
