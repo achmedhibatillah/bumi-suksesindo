@@ -75,10 +75,11 @@
                     <td>{{ $x['lembur_status'] }}</td>
                     <td>{{ $x['lembur_catatan'] }}</td>
                 </tr>
+            <?php $i++ ?>
             @endforeach
         </table>
-        <div class="d-flex justify-content-end">
-            @include('templates/pagination', ['xxx' => $lembur])
-        </div>
+    </div>
+    <div class="d-flex justify-content-end m-3">
+        @include('templates/pagination', ['xxx' => $lembur])
     </div>
 </div>

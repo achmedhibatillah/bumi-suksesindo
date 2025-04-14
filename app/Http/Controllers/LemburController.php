@@ -10,6 +10,10 @@ class LemburController extends Controller
 {
     public function request(Request $request)
     {
+        if (Lembur::where('user_id', session('user')['user_id'])->where('lembur_tgl', $request->lembur_tgl)->exists()) {
+            return back()->withErrors(['lembur_tgl' => 'Anda sudah mengajukan lembur di tanggal yang sama.'])->withInput();
+        }
+
         $request->validate([
             'lembur_tgl' => ['required', 'date', 'after:today'],
             'lembur_mulai' => 'required',
@@ -28,7 +32,6 @@ class LemburController extends Controller
     
         $mulai = Carbon::createFromFormat('H:i', $request->lembur_mulai);
         $selesai = Carbon::createFromFormat('H:i', $request->lembur_selesai);
-    
         if ($mulai >= $selesai) {
             return back()->withErrors(['lembur_mulai' => 'Jam mulai harus lebih kecil dari jam selesai.'])->withInput();
         }
