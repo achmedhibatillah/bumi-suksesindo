@@ -6,6 +6,7 @@ use App\Models\Lembur;
 use App\Models\Presensi;
 use App\Models\Sesi;
 use App\Models\User;
+use App\Models\Users;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -124,6 +125,18 @@ class DashboardController extends Controller
             'lembur' => $lembur,
         ]) . 
         view('templates/footbar-user') . 
+        view('templates/footer');
+    }
+
+    public function cuti()
+    {
+
+        $user = Users::where('user_id ', session('user')['user_id'])->first();
+
+        return
+        view('templates/header') . 
+        view('templates/sidebar-user') . 
+        view('home/isi') . 
         view('templates/footer');
     }
 }
