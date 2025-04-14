@@ -64,10 +64,16 @@
                 <th>Status</th>
                 <th>Catatan</th>
             </thead>
-            <?php $i = 1 ?>
+            <?php $i = $lembur->firstItem() ?>
             @foreach($lembur as $x)
                 <tr>
+                    <td>{{ $i }}</td>
                     <td>{{ $x['lembur_tgl'] }}</td>
+                    <td>{{ $x['lembur_mulai'] }}</td>
+                    <td>{{ $x['lembur_selesai'] }}</td>
+                    <td>{{ $x['lembur_durasi'] }}</td>
+                    <td>{{ $x['lembur_status'] }}</td>
+                    <td>{{ $x['lembur_catatan'] }}</td>
                 </tr>
             @endforeach
         </table>
