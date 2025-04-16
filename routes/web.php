@@ -23,6 +23,7 @@ Route::get('registrasi/informasi/{slug}', [AuthController::class, 'user_registra
 Route::get('registrasi/verifikasi/{slug}', [AuthController::class, 'user_registrasi_verifikasi']);
 Route::post('registrasi/identitas', [AuthController::class, 'user_registrasi_save']);
 
+// Users
 Route::middleware([UserMiddleware::class])->group(function () {
     Route::get('homepage', [DashboardController::class, 'index']);
     Route::post('presensi-masuk', [PresensiController::class, 'rekap_masuk']);
@@ -38,6 +39,7 @@ Route::middleware([UserMiddleware::class])->group(function () {
     Route::get('kalender-perusahaan', [DashboardController::class, 'kalender']);
 });
 
+// Root
 Route::get('root', function() { return redirect()->to('root/login'); });
 Route::get('root/login', [AuthController::class, 'root_login']);
 Route::post('root/login', [AuthController::class, 'root_login_verifikasi']);
