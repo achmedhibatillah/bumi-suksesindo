@@ -24,7 +24,7 @@ class RootController extends Controller
         ]) . 
         view('templates/footbar-root') . 
         view('templates/footer');  
-    }
+    } 
 
     public function sesi()
     {
@@ -47,13 +47,20 @@ class RootController extends Controller
 
     public function sesi_detail($sesi_id)
     {
+        $data = [
+            'title' => 'Root - Sesi',
+            'page' => 'sesi',
+        ];
+
         $sesiData = Sesi::getDetailSesi($sesi_id);
 
         return
         view('templates/header') . 
+        view('templates/sidebar-root', $data) . 
         view('root/sesi-detail', [
             'sesi' => $sesiData,
         ]) . 
+        view('templates/footbar-root') . 
         view('templates/footer');
     }
 

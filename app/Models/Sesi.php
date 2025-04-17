@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Container\Attributes\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 
 class Sesi extends Model
 {
@@ -21,26 +22,31 @@ class Sesi extends Model
 
     public static function getAllSesi()
     {
-        return self::
-            orderBy('sesi_masuk', 'desc')
+        App::setLocale('id');
+    
+        return self::orderBy('sesi_masuk', 'desc')
             ->get()
             ->map(function ($sesi) {
                 $sesi_masuk = Carbon::parse($sesi->sesi_masuk);
                 $sesi_pulang = Carbon::parse($sesi->sesi_pulang);
-
+    
                 if (now()->lt($sesi_masuk)) {
                     $status = 'Belum';
-                } else if (now()->gte($sesi_masuk) && now()->lte($sesi_pulang)) { 
+                } else if (now()->gte($sesi_masuk) && now()->lte($sesi_pulang)) {
                     $status = 'Aktif';
                 } else if (now()->gt($sesi_pulang)) {
                     $status = 'Terlewat';
                 }
-
+    
                 return [
                     'sesi_id' => $sesi->sesi_id,
                     'sesi_deskripsi' => $sesi->sesi_deskripsi,
                     'sesi_masuk' => $sesi->sesi_masuk,
                     'sesi_pulang' => $sesi->sesi_pulang,
+                    'sesi_masuk_tgl' => $sesi_masuk->translatedFormat('l, d F Y'),
+                    'sesi_masuk_jam' => $sesi_masuk->format('H:i'),
+                    'sesi_pulang_tgl' => $sesi_pulang->translatedFormat('l, d F Y'),
+                    'sesi_pulang_jam' => $sesi_pulang->format('H:i'),
                     'status' => $status,
                 ];
             });
@@ -48,6 +54,8 @@ class Sesi extends Model
 
     public static function getDetailSesi($sesi_id)
     {
+        App::setLocale('id');
+
         return self::where('sesi_id', $sesi_id)->first();
 
         $sesi_masuk = Carbon::parse($sesi->sesi_masuk);
@@ -64,8 +72,10 @@ class Sesi extends Model
         return [
             'sesi_id' => $sesi->sesi_id,
             'sesi_deskripsi' => $sesi->sesi_deskripsi,
-            'sesi_masuk' => $sesi->sesi_masuk,
-            'sesi_pulang' => $sesi->sesi_pulang,
+            'sesi_masuk_tgl' => $sesi->sesi_masuk->translatedFormat('l, d F Y'),
+            'sesi_masuk_jam' => $sesi->sesi_masuk->format('H:i'),
+            'sesi_pulang_tgl' => $sesi->sesi_pulang->translatedFormat('l, d F Y'),
+            'sesi_pulang_jam' => $sesi->sesi_pulang->format('H:i'),
             'status' => $status,
         ];
     }
