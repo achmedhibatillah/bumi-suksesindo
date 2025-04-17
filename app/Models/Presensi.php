@@ -22,6 +22,11 @@ class Presensi extends Model
         'updated_at',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(Users::class, 'user_id');
+    }
+
     public static function getAllInOneMonthByUser($user_id)
     {
         return self::where('user_id', $user_id)
@@ -121,13 +126,14 @@ class Presensi extends Model
     
         $sesiTgl = Carbon::parse($sesiData->sesi_masuk)->toDateString();
     
-        return self::whereDate('created_at', $sesiTgl)->get()
+        return self::whereDate('created_at', $sesiTgl)
+            ->with('user')
+            ->get()
             ->map(function ($presensi) {
                 $created_at = Carbon::parse($presensi->created_at);
                 $updated_at = Carbon::parse($presensi->updated_at);
                 $status = $presensi->presensi_status;
     
-                // Tentukan status presensi
                 if ($status == 1) {
                     $presensi_status = $created_at->equalTo($updated_at) 
                         ? 'Hadir (tanpa rekap pulang)' 
@@ -144,7 +150,6 @@ class Presensi extends Model
                     $presensi_status = 'Tidak Diketahui';
                 }
     
-                // Format waktu presensi
                 if (in_array($status, [1, 2])) {
                     $presensi_pukul = $created_at->equalTo($updated_at)
                         ? $created_at->format('H:i:s') . ' - kepulangan tidak terekap'
@@ -154,6 +159,8 @@ class Presensi extends Model
                 }
     
                 return [
+                    'user_nama' => optional($presensi->user)->user_nama ?? '(Nama tidak ditemukan)',
+                    'user_id' => $presensi->user_id,
                     'presensi_id' => $presensi->presensi_id,
                     'status' => $presensi_status,
                     'pukul' => $presensi_pukul,

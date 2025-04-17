@@ -1,17 +1,18 @@
 <div class="row m-0 p-0">
-    <div class="col-md-6 m-0 p-0 pe-0 pe-md-3 pb-5 pb-md-0 overflow-hidden">
-        <h4 class="text-clr2 fw-bold">{{ $karyawan['user_nama'] }}</h4>
-        <hr>
-        <div class="">
-            <p class="m-0 mb-3 fsz-10 text-secondary">{{ $karyawan['user_id'] }}</p>
-            <p class="m-0 fsz-12">Email :</p>
-            <p class="m-0 mb-3">{{ $karyawan['user_email'] }}</p>
-            <p class="m-0 fsz-12">Tanggal bergabung :</p>
-            <p class="m-0">{{ $karyawan['created_at_tgl'] }}</p>
+    <div class="col-md-6 m-0 p-0 pe-0 pe-md-2">
+        <div class="card m-0 p-3 shadow-m rounded-s mb-4">
+            <h4 class="text-clr2 fw-bold">{{ $karyawan['user_nama'] }}</h4>
+            <p class="fsz-10 text-secondary">{{ $karyawan['user_id'] }}</p>
+            <hr>
+            <div class="">
+                <p class="m-0 fsz-12">Email :</p>
+                <p class="m-0 mb-3">{{ $karyawan['user_email'] }}</p>
+                <p class="m-0 fsz-12">Tanggal bergabung :</p>
+                <p class="m-0">{{ $karyawan['created_at_tgl'] }}</p>
+            </div>
         </div>
     </div>
-    <div class="col-md-6 m-0 p-0">
-        <p class="text-clr2 fw-bold">Filter Data Presensi</p>
+    <div class="col-md-6 m-0 p-0 d-flex align-items-end">
         <div class="card m-0 p-3 shadow-m rounded-s mb-4">
         <form action="{{ url('root/karyawan/' . $karyawan['user_id']) }}" method="get">
                 @csrf 

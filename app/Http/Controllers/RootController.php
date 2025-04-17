@@ -110,13 +110,13 @@ class RootController extends Controller
         $sesiData = Sesi::getDetailSesi($sesi_id);
         $sesiUsersData = Presensi::getPresensiBySesi($sesi_id);
 
-        dd($sesi_id);
-
+        // dd($sesiUsersData);
         return
         view('templates/header') . 
         view('templates/sidebar-root', $data) . 
         view('root/sesi-detail', [
             'sesi' => $sesiData,
+            'sesiusers' => $sesiUsersData,
         ]) . 
         view('templates/footbar-root') . 
         view('templates/footer');
