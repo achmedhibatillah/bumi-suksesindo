@@ -10,49 +10,49 @@
             </div>
             <div class="d-flex flex-column justify-content-center mt-5">
                 <p class="text-light mb-4 mx-4">ROOT</p>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'homepage') ? 'sidebar-active' : '' }}" href="{{url('homepage')}}"
-                data-bs-toggle="tooltip" title="Homepage">
+                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'homepage') ? 'sidebar-active' : '' }}" href="{{url('root/index')}}"
+                data-bs-toggle="tooltip" title="Index">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">
-                            <img src="{{ asset('assets/images/static/icons/homepage.png') }}" style="height:19px;width:19.4px;">
+                            <i class="fas fa-gear fsz-20"></i>
                         </div>
-                        <p class="menu-resp-text text-light m-0 ms-3">Homepage</p>
+                        <p class="menu-resp-text text-light m-0 ms-3">Index</p>
                     </div>
                 </a>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'riwayat-presensi') ? 'sidebar-active' : '' }}" href="{{url('riwayat-presensi')}}"
-                data-bs-toggle="tooltip" title="Riwayat Presensi">
+                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'karyawan') ? 'sidebar-active' : '' }}" href="{{url('root/karyawan')}}"
+                data-bs-toggle="tooltip" title="Data Karyawan">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">
-                            <img src="{{ asset('assets/images/static/icons/absensi.png') }}" style="height:22px;width:16px;">
+                            <i class="fas fa-gear fsz-20"></i>
                         </div>
-                        <p class="menu-resp-text text-light m-0 ms-3">Riwayat Presensi</p>
+                        <p class="menu-resp-text text-light m-0 ms-3">Data Karyawan</p>
                     </div>
                 </a>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'lembur') ? 'sidebar-active' : '' }}" href="{{url('laporan-lembur')}}"
-                data-bs-toggle="tooltip" title="Laporan Lembur">
+                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'sesi') ? 'sidebar-active' : '' }}" href="{{url('root/sesi')}}"
+                data-bs-toggle="tooltip" title="Manajemen Sesi">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">
-                            <img src="{{ asset('assets/images/static/icons/lembur.png') }}" style="height:22px;width:16px;">
+                            <i class="fas fa-gear fsz-20"></i>
                         </div>
-                        <p class="menu-resp-text text-light m-0 ms-3">Laporan Lembur</p>
+                        <p class="menu-resp-text text-light m-0 ms-3">Manajemen Sesi</p>
                     </div>
                 </a>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'cuti') ? 'sidebar-active' : '' }}" href="{{url('izin-cuti')}}"
-                data-bs-toggle="tooltip" title="Izin Cuti">
+                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'lembur') ? 'sidebar-active' : '' }}" href="{{url('root/lembur')}}"
+                data-bs-toggle="tooltip" title="Pengajuan Lembur">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">
-                            <img src="{{ asset('assets/images/static/icons/cuti.png') }}" style="height:22px;width:16px;">
+                            <i class="fas fa-gear fsz-20"></i>
                         </div>
-                        <p class="menu-resp-text text-light m-0 ms-3">Izin Cuti</p>
+                        <p class="menu-resp-text text-light m-0 ms-3">Pengajuan Lembur</p>
                     </div>
                 </a>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'kalender') ? 'sidebar-active' : '' }}" href="{{url('kalender-perusahaan')}}"
-                data-bs-toggle="tooltip" title="Kalender Perusahaan">
+                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'cuti') ? 'sidebar-active' : '' }}" href="{{url('root/cuti')}}"
+                data-bs-toggle="tooltip" title="Pengajuan Cuti">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">
-                            <img src="{{ asset('assets/images/static/icons/kalender.png') }}" style="height:20px;width:18px;">
+                            <i class="fas fa-gear fsz-20"></i>
                         </div>
-                        <p class="menu-resp-text text-light m-0 ms-3">Kalender Perusahaan</p>
+                        <p class="menu-resp-text text-light m-0 ms-3">Pengajuan Cuti</p>
                     </div>
                 </a>
             </div>
@@ -77,7 +77,6 @@
                         <p class="mt-3 m-0 text-center fw-bold">Root access</p>
                     </li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-clr2 py-2" href="{{ url('profil-saya') }}"><i class="fas fa-user-circle me-2"></i>Profil Saya</a></li>
                     <li><a class="dropdown-item text-danger py-2" href="{{ url('logout') }}"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
                 </ul>
             </div>
