@@ -50,7 +50,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-dialog">
         <div class="modal-content border-light rounded-m">
             <div class="modal-header bg-clr2 text-light">
-                <h1 class="modal-title fs-5"><i class="fas fa-exclamation-circle me-2"></i>Tambah Sesi</h1>
+                <h1 class="modal-title fs-5"><i class="fas fa-add me-2"></i>Tambah Sesi</h1>
                 <button type="button" class="ms-auto hover bg-clr2 border-light text-light rounded-circle he-28 we-28" data-bs-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">

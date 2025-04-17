@@ -47,6 +47,7 @@ Route::middleware([RootMiddleware::class])->group(function () {
     Route::get('root/index', [RootController::class, 'index']); 
 
     Route::get('root/karyawan', [RootController::class, 'karyawan']); 
+    Route::get('root/karyawan/{slug}', [RootController::class, 'karyawan_detail']); 
 
     Route::get('root/sesi', [RootController::class, 'sesi']);
     Route::get('root/sesi/{slug}', [RootController::class, 'sesi_detail']);

@@ -35,4 +35,19 @@ class Users extends Model
                 ];
             });
     }
+
+    public static function getDetailKaryawan($user_id)
+    {
+        $karyawan = self::where('user_id', $user_id)->first();
+        $created_at = Carbon::parse($karyawan->created_at);
+
+        return [
+            'user_id' => $karyawan->user_id,
+            'user_email' => $karyawan->user_email,
+            'user_nama' => $karyawan->user_nama,
+            'user_foto' => $karyawan->user_foto,
+            'created_at_tgl' => $created_at->translatedFormat('l, d F Y'),
+            'created_at_jam' => $created_at->translatedFormat('H:s'),
+        ];
+    }
 }

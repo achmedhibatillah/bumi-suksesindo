@@ -46,6 +46,41 @@ class RootController extends Controller
         view('templates/footer');
     }
 
+    public function karyawan_detail($user_id, Request $request)
+    {
+        $karyawanData = Users::where('user_id', $user_id)->first();
+
+        $data = [
+            'title' => 'Root - Data Karyawan | ' . $karyawanData['user_id'],
+            'page' => 'karyawan',
+        ];
+
+        $karyawanData = Users::getDetailKaryawan($user_id);
+        $presensiData = Presensi::getFilteredPresensi($user_id, Carbon::now()->subDays(30), Carbon::now());
+        $tgl = [
+            'tgl_mulai' => Carbon::now()->subDays(30)->toDateString(),
+            'tgl_selesai' => Carbon::now()->toDateString(),
+        ];
+
+        if ($request->has('tgl_mulai') && $request->has('tgl_selesai')) {
+            $presensiData = Presensi::getFilteredPresensi($user_id, $request->tgl_mulai, $request->tgl_selesai);
+            $tgl = [
+                'tgl_mulai' => $request->tgl_mulai,
+                'tgl_selesai' => $request->tgl_selesai,
+            ];
+        }
+        return
+        view('templates/header', $data) . 
+        view('templates/sidebar-root', $data) . 
+        view('root/karyawan-detail', [
+            'karyawan' => $karyawanData,
+            'presensi' => $presensiData,
+            'tgl' => $tgl,
+        ]) . 
+        view('templates/footbar-root') . 
+        view('templates/footer');
+    }
+
     public function sesi()
     {
         $data = [
