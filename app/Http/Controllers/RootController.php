@@ -53,6 +53,9 @@ class RootController extends Controller
         ];
 
         $sesiData = Sesi::getDetailSesi($sesi_id);
+        $sesiUsersData = Presensi::getPresensiBySesi($sesi_id);
+
+        dd($sesi_id);
 
         return
         view('templates/header') . 
