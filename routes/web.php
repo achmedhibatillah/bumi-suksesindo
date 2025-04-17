@@ -44,7 +44,9 @@ Route::get('root', function() { return redirect()->to('root/login'); });
 Route::get('root/login', [AuthController::class, 'root_login']);
 Route::post('root/login', [AuthController::class, 'root_login_verifikasi']);
 Route::middleware([RootMiddleware::class])->group(function () {
-    Route::get('root/index', [RootController::class, 'index']);
+    Route::get('root/index', [RootController::class, 'index']); 
+
+    Route::get('root/karyawan', [RootController::class, 'karyawan']); 
 
     Route::get('root/sesi', [RootController::class, 'sesi']);
     Route::get('root/sesi/{slug}', [RootController::class, 'sesi_detail']);

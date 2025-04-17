@@ -114,18 +114,28 @@ class Presensi extends Model
     public static function getPresensiBySesi($sesi_id)
     {
         $sesiData = Sesi::where('sesi_id', $sesi_id)->first();
-        $sesiTgl = Carbon::parse($sesiData->sesi_masuk);
-
+    
+        if (!$sesiData) {
+            return collect();
+        }
+    
+        $sesiTgl = Carbon::parse($sesiData->sesi_masuk)->toDateString();
+    
         return self::whereDate('created_at', $sesiTgl)->get()
             ->map(function ($presensi) {
                 $created_at = Carbon::parse($presensi->created_at);
                 $updated_at = Carbon::parse($presensi->updated_at);
                 $status = $presensi->presensi_status;
-
+    
+                // Tentukan status presensi
                 if ($status == 1) {
-                    $presensi_status = $created_at->equalTo($updated_at) ? 'Hadir (tanpa rekap pulang)' : 'Hadir';
+                    $presensi_status = $created_at->equalTo($updated_at) 
+                        ? 'Hadir (tanpa rekap pulang)' 
+                        : 'Hadir';
                 } elseif ($status == 2) {
-                    $presensi_status = $created_at->equalTo($updated_at) ? 'Telat (tanpa rekap pulang)' : 'Telat';
+                    $presensi_status = $created_at->equalTo($updated_at) 
+                        ? 'Telat (tanpa rekap pulang)' 
+                        : 'Telat';
                 } elseif ($status == 3) {
                     $presensi_status = 'Izin';
                 } elseif ($status == 4) {
@@ -134,6 +144,7 @@ class Presensi extends Model
                     $presensi_status = 'Tidak Diketahui';
                 }
     
+                // Format waktu presensi
                 if (in_array($status, [1, 2])) {
                     $presensi_pukul = $created_at->equalTo($updated_at)
                         ? $created_at->format('H:i:s') . ' - kepulangan tidak terekap'
@@ -141,11 +152,13 @@ class Presensi extends Model
                 } else {
                     $presensi_pukul = '-';
                 }
-
+    
                 return [
                     'presensi_id' => $presensi->presensi_id,
-                    'status' => $status,
+                    'status' => $presensi_status,
+                    'pukul' => $presensi_pukul,
                 ];
             });
     }
+    
 }

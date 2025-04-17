@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Presensi;
 use App\Models\Sesi;
 use App\Models\User;
+use App\Models\Users;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,25 @@ class RootController extends Controller
         view('templates/footbar-root') . 
         view('templates/footer');  
     } 
+
+    public function karyawan()
+    {
+        $data = [
+            'title' => 'Root - Data Karyawan',
+            'page' => 'karyawan',
+        ];
+
+        $karyawanData = Users::getAllKaryawan();
+
+        return
+        view('templates/header') . 
+        view('templates/sidebar-root', $data) . 
+        view('root/karyawan', [
+            'karyawan' => $karyawanData,
+        ]) . 
+        view('templates/footbar-root') . 
+        view('templates/footer');
+    }
 
     public function sesi()
     {
