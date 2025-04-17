@@ -110,4 +110,15 @@ class Presensi extends Model
             ];
         });    
     }
+
+    public function getPresensiBySesi($sesi_id)
+    {
+        $sesiData = Sesi::where('sesi_id', $sesi_id)->first();
+        $sesiTgl = Carbon::parse($sesiData->sesi_masuk);
+
+        return self::whereDate('created_at', $sesiTgl)->get()
+            ->map(function ($presensi) {
+                
+            });
+    }
 }
