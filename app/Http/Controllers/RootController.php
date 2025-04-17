@@ -12,11 +12,27 @@ class RootController extends Controller
 {
     public function index()
     {
+        $data = [
+            'title' => 'Root',
+            'page' => 'homepage',
+        ];
+
+        return
+        view('templates/header') . 
+        view('templates/sidebar-root', $data) . 
+        view('root/index', [
+        ]) . 
+        view('templates/footbar-root') . 
+        view('templates/footer');  
+    }
+
+    public function sesi()
+    {
         $sesiData = Sesi::getAllSesi();
 
         return
         view('templates/header') . 
-        view('root/index', [
+        view('root/sesi', [
             'sesi' => $sesiData,
         ]) . 
         view('templates/footer');
