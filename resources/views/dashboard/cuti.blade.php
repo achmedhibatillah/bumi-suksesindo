@@ -129,6 +129,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-end">
+                @include('templates/pagination', ['xxx' => $cuti])
+            </div>
         </div>
     </div>
 </div>

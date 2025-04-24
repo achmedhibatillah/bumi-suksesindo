@@ -220,8 +220,8 @@ class RootController extends Controller
     public function cuti()
     {
         $data = [
-            'title' => 'Root - Pengajuan Lembur',
-            'page' => 'lembur',
+            'title' => 'Root - Pengajuan Cuti',
+            'page' => 'cuti',
         ];
 
         $lemburData = Lembur::getLembur();
