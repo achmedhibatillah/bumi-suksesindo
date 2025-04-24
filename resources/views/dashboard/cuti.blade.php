@@ -93,18 +93,31 @@
                                     <div class="modal-body">
                                         <div class="row m-0 p-0 w-100">
                                             <div class="col-4 m-0 p-0">Tanggal pengajuan</div>
-                                            <div class="col-1 m-0 p-0">:</div>
+                                            <div class="col-1 m-0 p-0 pe-1 text-end">:</div>
                                             <div class="col-7 m-0 p-0">{{ $x['created_at'] }}</div>
-                                        </div>
-                                        <div class="row m-0 p-0 w-100">
+                                            <!--  -->
+                                            <div class="col-12 m-0 p-0 pt-3 fw-bold">Waktu cuti</div>
+                                            <!--  -->
                                             <div class="col-4 m-0 p-0">Tanggal mulai</div>
-                                            <div class="col-1 m-0 p-0">:</div>
+                                            <div class="col-1 m-0 p-0 pe-1 text-end">:</div>
                                             <div class="col-7 m-0 p-0">{{ $x['cuti_mulai'] }}</div>
-                                        </div>
-                                        <div class="row m-0 p-0 w-100">
+                                            <!--  -->
                                             <div class="col-4 m-0 p-0">Tanggal mulai</div>
-                                            <div class="col-1 m-0 p-0">:</div>
+                                            <div class="col-1 m-0 p-0 pe-1 text-end">:</div>
                                             <div class="col-7 m-0 p-0">{{ $x['cuti_selesai'] }}</div>
+                                            <!--  -->
+                                            <div class="col-4 m-0 p-0">Durasi</div>
+                                            <div class="col-1 m-0 p-0 pe-1 text-end">:</div>
+                                            <div class="col-7 m-0 p-0">{{ $x['cuti_durasi'] }}</div>
+                                            <!--  -->
+                                            <div class="col-12 m-0 p-0 pt-3 fw-bold">Status persetujuan</div>
+                                            <div class="col-12 m-0 p-0">{{ $x['cuti_verif'] }}</div>
+                                            <!--  -->
+                                            <div class="col-12 m-0 p-0 pt-3 fw-bold">Alasan cuti</div>
+                                            <div class="col-12 m-0 p-0">{{ $x['cuti_alasan'] }}</div>
+                                            <!--  -->
+                                            <div class="col-12 m-0 p-0 pt-3 fw-bold">Dokumen persetujuan</div>
+                                            <div class="col-12 m-0 p-0"><a href="{{ url('uploads/CTI-' . $x['cuti_id']) }}" target="_blank" class="td-hover">Lihat dokumen <i class="fas fa-file-pdf"></i></a></div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">

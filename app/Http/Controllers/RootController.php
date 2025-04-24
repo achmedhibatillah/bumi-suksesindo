@@ -216,4 +216,23 @@ class RootController extends Controller
             return redirect()->back()->with('success', 'Pengajuan lembur dari '. $request->user_nama . ' berhasil ditolak.');
         }
     }
+
+    public function cuti()
+    {
+        $data = [
+            'title' => 'Root - Pengajuan Lembur',
+            'page' => 'lembur',
+        ];
+
+        $lemburData = Lembur::getLembur();
+
+        return
+        view('templates/header') . 
+        view('templates/sidebar-root', $data) . 
+        view('root/cuti', [
+            'lembur' => $lemburData,
+        ]) . 
+        view('templates/footbar-root') . 
+        view('templates/footer');
+    }
 }
