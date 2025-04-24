@@ -19,6 +19,7 @@ class LemburController extends Controller
             'lembur_mulai' => 'required',
             'lembur_selesai' => 'required',
             'lembur_catatan' => 'required|max:350',
+            'lembur_file' => 'required|file|mimes:pdf|max:10240',
         ], [
             'lembur_tgl.required' => 'Tanggal lembur harus diisi.',
             'lembur_tgl.after' => 'Tanggal lembur minimal harus besok.',
@@ -28,6 +29,11 @@ class LemburController extends Controller
     
             'lembur_catatan.required' => 'Catatan harus diisi.',
             'lembur_catatan.max' => 'Maksimal 350 karakter.',
+
+            'lembur_file.required' => 'File pendukung harus diupload.',
+            'lembur_file.mimes' => 'File harus berformat PDF.',
+            'lembur_file.max' => 'Ukuran file maksimal 10 MB.',
+            
         ]);
     
         $mulai = Carbon::createFromFormat('H:i', $request->lembur_mulai);
@@ -47,6 +53,16 @@ class LemburController extends Controller
         ];
 
         Lembur::create($lemburData);
+
+        $file = $request->file('lembur_file');
+        $filename = "LMB-" . $lemburData['lembur_id'] . ".pdf";
+        $uploadPath = public_path('uploads');
+
+        if (!file_exists($uploadPath)) {
+            mkdir($uploadPath, 0755, true);
+        }
+
+        $file->move($uploadPath, $filename);
 
         return redirect()->back()->with('success', 'Berhasil mengajukan permintaan lembur.');
     }

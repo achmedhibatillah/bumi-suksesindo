@@ -3,7 +3,7 @@
         <p class="m-0 fw-bold">Formulir Pengajuan Lembur</p>
     </div>
     <div class="p-3">
-        <form action="{{ url('lembur/request') }}" method="post">
+        <form action="{{ url('lembur/request') }}" method="post" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="user_id" value="{{ $user->user_id }}">
             <div class="row m-0 p-0">
@@ -33,12 +33,26 @@
                 </div>
             </div>
             <div class="row m-0 p-0 pt-4">
-                <p class="text-clr2 fw-bold mb-1">Catatan / Deskripsi Tugas Lembur</p>
-                <input name="lembur_catatan" type="text" class="form-control border-clr2 rounded-s" placeholder="..." autocomplete="off"
-                value="{{ old('lembur_catatan') }}">
-                @error('lembur_catatan')
-                    <div class="fsz-10 text-danger ms-2"><i class="fas fa-exclamation-circle me-1"></i>{{ $message }}</div>
-                @enderror
+                <div class="col-md-8 m-0 p-1">
+                    <p class="text-clr2 fw-bold mb-1">Catatan / Deskripsi Tugas Lembur</p>
+                    <input name="lembur_catatan" type="text" class="form-control border-clr2 rounded-s" placeholder="..." autocomplete="off"
+                    value="{{ old('lembur_catatan') }}">
+                    @error('lembur_catatan')
+                        <div class="fsz-10 text-danger ms-2"><i class="fas fa-exclamation-circle me-1"></i>{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-4 m-0 p-1 pt-4 pt-md-1">
+                    <p class="text-clr2 text-center fw-bold mb-1">File Pendukung (PDF, maks 10 MB)</p>
+                    <input name="lembur_file" type="file" class="form-control border-clr2 rounded-s"
+                    accept="application/pdf">
+                    @if(session('errors') && session('errors')->has('lembur_file'))
+                        <div class="fsz-10 text-danger ms-2">
+                            <i class="fas fa-exclamation-circle me-1"></i>{{ session('errors')->first('lembur_file') }}
+                        </div>
+                    @elseif(session('errors'))
+                        <div class="fsz-10 text-danger ms-2"><i class="fas fa-exclamation-circle me-1"></i>Silakan upload ulang file.</div>
+                    @endif
+                </div>
             </div>
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-clr2 rounded-s mt-4"><img src="{{ asset('assets/images/static/icons/submit.png') }}" class="he-15 me-2">Ajukan Lembur</button>
@@ -62,7 +76,7 @@
                 <th>Jam selesai</th>
                 <th>Durasi</th>
                 <th>Status</th>
-                <th>Catatan</th>
+                <th></th>
             </thead>
             <?php $i = $lembur->firstItem() ?>
             @foreach($lembur as $x)
@@ -73,8 +87,29 @@
                     <td>{{ $x['lembur_selesai'] }}</td>
                     <td>{{ $x['lembur_durasi'] }}</td>
                     <td>{{ $x['lembur_status'] }}</td>
-                    <td>{{ $x['lembur_catatan'] }}</td>
+                    <td><a href="#" class="btn btn-clr2 lh-1 fsz-10" data-bs-toggle="modal" data-bs-target="#modalInfo{{ $x['lembur_id'] }}">Lihat</a></td>
                 </tr>
+                <!-- Modal -->
+                <div class="modal fade" id="modalInfo{{ $x['lembur_id'] }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content border-light rounded-m">
+                            <div class="modal-header bg-clr2 text-light">
+                                <h3 class="modal-title fw-bold">Pengajuan Lembur</h3>
+                                <button type="button" class="ms-auto hover bg-clr2 border-light text-light rounded-circle he-28 we-28" data-bs-dismiss="modal" aria-label="Close">x</button>
+                            </div>
+                            <div class="modal-body">
+                                <h5>{{ $x['lembur_tgl'] }}</h5>
+                                <h5>{{ $x['lembur_mulai'] }} - {{ $x['lembur_selesai'] }}</h5>
+                                <h5>Durasi : {{ $x['lembur_durasi'] }}</h5>
+                                <h5>Status : {{ $x['lembur_status'] }}</h5>
+                                <a href="{{ url('uploads/LMB-' . $x['lembur_id'] . '.pdf') }}" target="_blank" class="btn btn-success">Lihat file <i class="fas fa-file-pdf"></i></a>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keluar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <?php $i++ ?>
             @endforeach
         </table>

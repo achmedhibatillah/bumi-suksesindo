@@ -54,4 +54,6 @@ Route::middleware([RootMiddleware::class])->group(function () {
 
     Route::post('root/sesi/add', [RootController::class, 'sesi_add']);
     Route::post('root/sesi/del', [RootController::class, 'sesi_del']);
+
+    Route::get('root/lembur', [RootController::class, 'lembur']);
 });

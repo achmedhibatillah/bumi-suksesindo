@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lembur;
 use App\Models\Presensi;
 use App\Models\Sesi;
 use App\Models\User;
@@ -183,5 +184,25 @@ class RootController extends Controller
         Presensi::whereDate('created_at', $sesiData->created_at->toDateString())->delete();
         Sesi::where('sesi_id', $request->sesi_id)->delete();
         return redirect()->back()->with('success', 'Anda berhasil menghapus sesi dengan ID #' . $request->sesi_id);
+    }
+
+
+    public function lembur()
+    {
+        $data = [
+            'title' => 'Root - Pengajuan Lembur',
+            'page' => 'lembur',
+        ];
+
+        $lemburData = Lembur::getLembur();
+
+        return
+        view('templates/header') . 
+        view('templates/sidebar-root', $data) . 
+        view('root/lembur', [
+            'lembur' => $lemburData,
+        ]) . 
+        view('templates/footbar-root') . 
+        view('templates/footer');
     }
 }
