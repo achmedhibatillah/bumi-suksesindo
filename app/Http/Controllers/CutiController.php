@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cuti;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -27,5 +28,19 @@ class CutiController extends Controller
         if ($mulai >= $selesai) {
             return back()->withErrors(['cuti_mulai' => 'Waktu mulai harus lebih kecil dari waktu selesai.'])->withInput();
         }
+
+        $logic = new LogicController();
+        $cutiData = [
+            'cuti_id' => $logic->generateUniqueId('cuti', 'cuti_id'),
+            'cuti_status' => $request->cuti_status,
+            'cuti_mulai' => $request->cuti_mulai,
+            'cuti_selesai' => $request->cuti_selesai,
+            'cuti_verif' => 0,
+            'cuti_alasan' => $request->cuti_alasan,
+            'user_id' => session('user')['user_id'],
+        ];
+
+        Cuti::create($cutiData);
+        return redirect()->back()->with('success', 'Pengajuan cuti berhasil dibuat.');
     }
 }

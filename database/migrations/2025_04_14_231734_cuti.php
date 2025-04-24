@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('cuti_mulai');
             $table->date('cuti_selesai');
             $table->string('cuti_alasan', 350)->nullable();
+            $table->integer('cuti_verif');
             $table->string('user_id', 35);
             $table->timestamps();
 

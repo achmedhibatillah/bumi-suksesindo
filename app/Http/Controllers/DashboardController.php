@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cuti;
 use App\Models\Lembur;
 use App\Models\Presensi;
 use App\Models\Sesi;
@@ -137,10 +138,14 @@ class DashboardController extends Controller
 
         $user = User::where('user_id', session('user')['user_id'])->first();
 
+        $cutiData = Cuti::getCutiByUser($user->user_id);
+
         return
         view('templates/header', $data) . 
         view('templates/sidebar-user', $data) . 
-        view('dashboard/cuti') . 
+        view('dashboard/cuti', [
+            'cuti' => $cutiData,
+        ]) . 
         view('templates/footbar-user') . 
         view('templates/footer');
     }
