@@ -7,7 +7,7 @@
             @include('templates/flashmessage')
         </div>
         <div class="">
-            <form action="{{ url('izin-cuti/request') }}" method="post" class="m-3">
+            <form action="{{ url('izin-cuti/request') }}" method="post" class="m-3" enctype="multipart/form-data">
                 @csrf
                 <div class="col-md-6 mb-3">
                     <label for="cuti_status" class="text-clr2 fw-bold">Jenis Cuti</label>
@@ -42,6 +42,18 @@
                     @error('cuti_alasan')
                         <div class="fsz-10 text-danger ms-2"><i class="fas fa-exclamation-circle me-1"></i>{{ $message }}</div>
                     @enderror
+                </div>
+                <div class="mb-3">
+                <label for="cuti_file" class="text-clr2 fw-bold mb-1">File Pendukung (PDF, maks 10 MB)</label>
+                    <input name="cuti_file" type="file" class="form-control border-clr2 rounded-s"
+                    accept="application/pdf">
+                    @if(session('errors') && session('errors')->has('cuti_file'))
+                        <div class="fsz-10 text-danger ms-2">
+                            <i class="fas fa-exclamation-circle me-1"></i>{{ session('errors')->first('cuti_file') }}
+                        </div>
+                    @elseif(session('errors'))
+                        <div class="fsz-10 text-danger ms-2"><i class="fas fa-exclamation-circle me-1"></i>Silakan upload ulang file.</div>
+                    @endif
                 </div>
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-clr2">

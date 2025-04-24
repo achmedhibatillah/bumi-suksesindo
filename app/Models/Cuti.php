@@ -21,6 +21,11 @@ class Cuti extends Model
         'user_id',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }   
+
     public static function getCutiByUser($user_id)
     {
         $paginator = self::where('user_id', $user_id)
@@ -73,7 +78,7 @@ class Cuti extends Model
 
     public static function getCuti()
     {
-        $paginator = self::where('user_id', $user_id)
+        $paginator = self::with('user')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
@@ -87,14 +92,19 @@ class Cuti extends Model
 
             if ($cuti->cuti_verif == 0 && $mulaiCarbon->lessThanOrEqualTo(now())) {
                 $cuti_verif = 'Kadaluarsa';
+                $cuti_konfirm = false;
             } elseif ($cuti->cuti_verif == 0 && $mulaiCarbon->greaterThan(now())) {
                 $cuti_verif = 'Menunggu konfirmasi';
+                $cuti_konfirm = true;
             } elseif ($cuti->cuti_verif == 1) {
                 $cuti_verif = 'Disetujui';
+                $cuti_konfirm = false;
             } elseif ($cuti->cuti_verif == 2) {
                 $cuti_verif = 'Ditolak';
+                $cuti_konfirm = false;
             } else {
                 $cuti_verif = '';
+                $cuti_konfirm = false;
             }
 
             // Perbaikan penentuan cuti_status
@@ -106,6 +116,8 @@ class Cuti extends Model
             $cuti_status = $cuti_status_map[$cuti->cuti_status] ?? 'Tidak Diketahui';
 
             return [
+                'user_id' => $cuti->user_id,
+                'user_nama' => $cuti->user?->user_nama,
                 'cuti_id' => $cuti->cuti_id,
                 'cuti_status' => $cuti_status,
                 'cuti_mulai' => $mulaiCarbon->translatedFormat('l, d F Y'),
@@ -113,6 +125,7 @@ class Cuti extends Model
                 'cuti_durasi' => $cuti_durasi,
                 'cuti_alasan' => $cuti->cuti_alasan,
                 'cuti_verif' => $cuti_verif,
+                'cuti_konfirm' => $cuti_konfirm,
                 'created_at' => $created_at->translatedFormat('l, d F Y'),
                 'updated_at' => $cuti->updated_at,
             ];

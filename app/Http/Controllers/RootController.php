@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cuti;
 use App\Models\Lembur;
 use App\Models\Presensi;
 use App\Models\Sesi;
@@ -224,13 +225,13 @@ class RootController extends Controller
             'page' => 'cuti',
         ];
 
-        $lemburData = Lembur::getLembur();
+        $cutiData = Cuti::getCuti();
 
         return
         view('templates/header') . 
         view('templates/sidebar-root', $data) . 
         view('root/cuti', [
-            'lembur' => $lemburData,
+            'cuti' => $cutiData,
         ]) . 
         view('templates/footbar-root') . 
         view('templates/footer');
