@@ -24,7 +24,7 @@ class PresensiController extends Controller
         $presensi_status = now()->lessThan($sesiData->sesi_masuk) ? 1 : 2;
         $presensiData = [
             'presensi_status' => $presensi_status,
-            'presensi_keterangan_masuk' => $request->presensi_keterangan_masuk,
+            'presensi_keterangan' => $request->presensi_keterangan,
             'user_id' => session('user')['user_id'],
             'created_at' => now(),
         ];
@@ -50,7 +50,7 @@ class PresensiController extends Controller
         $presensi_status = now()->lessThan(Carbon::today()->addHours(7)) ? 1 : 2;
 
         $presensiData = [
-            'presensi_keterangan_pulang' => $request->presensi_keterangan_pulang,
+            'presensi_id' => $presensiData->presensi_id,
         ];
 
         Presensi::where('user_id', session('user')['user_id'])->whereDate('created_at', Carbon::today())->update($presensiData);

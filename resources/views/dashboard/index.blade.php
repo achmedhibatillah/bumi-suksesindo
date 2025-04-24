@@ -187,8 +187,8 @@
                         </div>
                     </div>
                     <div class="">
-                        <label for="presensi_keterangan_masuk">Tambah keterangan <i class="fst-normal text-secondary ms-2">Opsional</i></label>
-                        <input name="presensi_keterangan_masuk" type="text" class="rounded-s border-clr2 bg-clrsec he-35 w-100 px-3 fsz-11" autocomplete="off" placeholder="...">
+                        <label for="presensi_keterangan">Tambah keterangan <i class="fst-normal text-secondary ms-2">Opsional</i></label>
+                        <input name="presensi_keterangan" type="text" class="rounded-s border-clr2 bg-clrsec he-35 w-100 px-3 fsz-11" autocomplete="off" placeholder="...">
                     </div>
                 </div>
                 <div class="modal-footer">

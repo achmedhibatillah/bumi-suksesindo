@@ -46,7 +46,7 @@
                             <td>{{ $x['presensi_tanggal'] }}</td>
                             <td>{{ $x['presensi_pukul'] }}</td>
                             <td>{{ $x['presensi_status'] }}</td>
-                            <td>{{ $x['presensi_keterangan_masuk'] }} {{ $x['presensi_keterangan_pulang'] }}</td>
+                            <td>{{ $x['presensi_keterangan'] }}</td>
                         </tr>
                     <?php $i++ ?>
                     @endforeach
