@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-6 m-0 p-0">
                     @if($issetPresensi == true)
-                        <div class="card hover cursor-pointer rounded-xs m-0 me-3 ms-1 my-3 p-0 {{ ($pulang == null) ? 'bg-clr5' : 'bg-secondary' }}" data-bs-toggle="modal" data-bs-target="{{ ($pulang == null) ? '#modalPulang' : '#modalWarningPulang' }}">
+                        <div class="card hover cursor-pointer rounded-xs m-0 me-3 ms-1 my-3 p-0 {{ ($pulang == null) ? 'bg-clr5' : 'bg-secondary' }}" data-bs-toggle="modal" data-bs-target="{{ ($pulang !== null) ? '#modalPulang' : '#modalWarningPulang' }}">
                             <div class="row text-light m-0 p-0">
                                 <div class="col-3 m-0 p-0 py-2 d-flex justify-content-center align-items-center">
                                     <img src="{{ url('assets/images/static/icons/dashboard-masuk.png') }}" class="w-75">
@@ -47,7 +47,7 @@
                                 <div class="col-9 m-0 p-0 py-2 d-flex flex-column justify-content-center align-items-center">
                                     <p class="text-center m-0">PULANG</p>
                                     @if($pulang == false)
-                                    <p class="text-center m-0 fw-bold clock-now"></p>
+                                        <p class="text-center m-0 fw-bold clock-now"></p>
                                     @elseif($pulang !== null)
                                         <p class="text-center m-0 fw-bold">{{ $pulang }}</p>
                                     @else 
@@ -129,8 +129,7 @@
                         <th>Tanggal</th>
                         <th>Pukul</th>
                         <th>Status</th>
-                        <th>Keterangan (Masuk)</th>
-                        <th>Keterangan (Pulang)</th>
+                        <th>Keterangan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -141,8 +140,7 @@
                             <td>{{ $x['presensi_tanggal'] }}</td>
                             <td>{{ $x['presensi_pukul'] }}</td>
                             <td>{{ $x['presensi_status'] }}</td>
-                            <td>{{ $x['presensi_keterangan_masuk'] }}</td>
-                            <td>{{ $x['presensi_keterangan_pulang'] }}</td>
+                            <td>{{ $x['presensi_keterangan'] }}</td>
                         </tr>
                     <?php $i++ ?>
                     @endforeach
@@ -220,8 +218,6 @@
 <!-- Modal -->
 <div class="modal fade" id="modalPulang" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <form action="{{ url('presensi-pulang') }}" method="post" class="text-clr2">
-        @csrf
             <div class="modal-content border-light rounded-m">
                 <div class="modal-header bg-clr2 text-light">
                     <h1 class="modal-title fw-bold">Rekap Pulang</h1>
@@ -238,16 +234,14 @@
                             <p class="ms-1 m-0">WIB</p>
                         </div>
                     </div>
-                    <div class="">
-                        <label for="presensi_keterangan_pulang">Tambah keterangan <i class="fst-normal text-secondary ms-2">Opsional</i></label>
-                        <input name="presensi_keterangan_pulang" type="text" class="rounded-s border-clr2 bg-clrsec he-35 w-100 px-3 fsz-11" autocomplete="off" placeholder="...">
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-clr2">Simpan</button>
+                    <form action="{{ url('presensi-pulang') }}" method="post" class="text-clr2">
+                        @csrf
+                        <button type="submit" class="btn btn-clr2">Simpan</button>
+                    </form>
                 </div>
             </div>
-        </form>
     </div>
 </div>

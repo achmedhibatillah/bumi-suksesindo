@@ -35,6 +35,7 @@ class DashboardController extends Controller
             } else {
                 $masuk = null;
                 $pulang = null;
+                // dd([$issetPresensi, $presensiExist, $masuk, $pulang]);
             }
         } else {
             $issetPresensi = false;

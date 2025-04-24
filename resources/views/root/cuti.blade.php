@@ -8,6 +8,7 @@
                 <div class="w-100 overflow-x-scroll">
                     <table class="table">
                         <thead class="table-secondary">
+                            <th>No</th>
                             <th>Nama Karyawan</th>
                             <th>Tanggal Pengajuan</th>
                             <th>Waktu Cuti</th>
@@ -16,8 +17,10 @@
                             <th></th>
                         </thead>
                         <tbody>
+                            <?php $i = $cuti->firstItem() ?>
                             @foreach($cuti as $x)
                                 <tr>
+                                    <td>{{ $i }}</td>
                                     <td><a href="{{ url('root/karyawan/' . $x['user_id']) }}" target="_blank" class="td-hover">{{ $x['user_nama'] }}</a></td>
                                     <td>
                                         <p class="m-0">{{ $x['created_at'] }}</p>
@@ -51,17 +54,17 @@
                                                 <p class="m-0">{{ $x['cuti_mulai'] }} - {{ $x['cuti_selesai'] }}</p>
                                                 <p class="m-0">Durasi : {{ $x['cuti_durasi'] }}</p>
                                                 <p class="m-0">Status : {{ $x['cuti_status'] }}</p>
-                                                <a href="{{ url('uploads/LMB-' . $x['cuti_id'] . '.pdf') }}" target="_blank" class="td-hover mt-3 d-block">Lihat file <i class="fas fa-file-pdf"></i></a>
+                                                <a href="{{ url('uploads/CTI-' . $x['cuti_id'] . '.pdf') }}" target="_blank" class="td-hover mt-3 d-block">Lihat file <i class="fas fa-file-pdf"></i></a>
                                             </div>
                                             <div class="modal-footer">
-                                                <form action="{{ url('root/lembur/response') }}" method="post">
+                                                <form action="{{ url('root/cuti/response') }}" method="post">
                                                     @csrf
                                                     <input type="hidden" name="status" value="false">
                                                     <input type="hidden" name="cuti_id" value="{{ $x['cuti_id'] }}">
                                                     <input type="hidden" name="user_nama" value="{{ $x['user_nama'] }}">
                                                     <button class="btn btn-danger">Tolak</button>
                                                 </form>
-                                                <form action="{{ url('root/lembur/response') }}" method="post">
+                                                <form action="{{ url('root/cuti/response') }}" method="post">
                                                     @csrf
                                                     <input type="hidden" name="status" value="true">
                                                     <input type="hidden" name="cuti_id" value="{{ $x['cuti_id'] }}">
@@ -72,9 +75,13 @@
                                         </div>
                                     </div>
                                 </div>
+                            <?php $i++ ?>
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-end">
+                        @include('templates/pagination', ['xxx' => $cuti])
+                    </div>
                 </div>
             @else 
                 <div class="m-0 text-secondary">Belum ada yang mengajukan cuti.</div>

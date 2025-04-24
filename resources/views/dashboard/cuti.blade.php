@@ -129,7 +129,7 @@
                                             <div class="col-12 m-0 p-0">{{ $x['cuti_alasan'] }}</div>
                                             <!--  -->
                                             <div class="col-12 m-0 p-0 pt-3 fw-bold">Dokumen persetujuan</div>
-                                            <div class="col-12 m-0 p-0"><a href="{{ url('uploads/CTI-' . $x['cuti_id']) }}" target="_blank" class="td-hover">Lihat dokumen <i class="fas fa-file-pdf"></i></a></div>
+                                            <div class="col-12 m-0 p-0"><a href="{{ url('uploads/CTI-' . $x['cuti_id'] . '.pdf') }}" target="_blank" class="td-hover">Lihat dokumen <i class="fas fa-file-pdf"></i></a></div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">

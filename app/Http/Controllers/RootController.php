@@ -236,4 +236,15 @@ class RootController extends Controller
         view('templates/footbar-root') . 
         view('templates/footer');
     }
+
+    public function cuti_response(Request $request)
+    {
+        if ($request->status == 'true') {
+            Cuti::where('cuti_id', $request->cuti_id)->update(['cuti_verif' => 1]);
+            return redirect()->back()->with('success', 'Pengajuan cuti dari '. $request->user_nama . ' berhasil disetujui.');
+        } else {
+            Cuti::where('cuti_id', $request->cuti_id)->update(['cuti_verif' => 2]);
+            return redirect()->back()->with('success', 'Pengajuan cuti dari '. $request->user_nama . ' berhasil ditolak.');
+        }
+    }
 }

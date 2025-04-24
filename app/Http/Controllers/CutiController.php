@@ -45,6 +45,17 @@ class CutiController extends Controller
         ];
 
         Cuti::create($cutiData);
+
+        $file = $request->file('cuti_file');
+        $filename = "CTI-" . $cutiData['cuti_id'] . ".pdf";
+        $uploadPath = public_path('uploads');
+
+        if (!file_exists($uploadPath)) {
+            mkdir($uploadPath, 0755, true);
+        }
+
+        $file->move($uploadPath, $filename);
+
         return redirect()->back()->with('success', 'Pengajuan cuti berhasil dibuat.');
     }
 }

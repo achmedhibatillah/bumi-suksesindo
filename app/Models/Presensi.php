@@ -15,8 +15,7 @@ class Presensi extends Model
     protected $fillable = [
         'presensi_id',
         'presensi_status',
-        'presensi_keterangan_masuk',
-        'presensi_keterangan_pulang',
+        'presensi_keterangan',
         'user_id',
         'created_at',
         'updated_at',
@@ -62,8 +61,7 @@ class Presensi extends Model
             return [
                 'presensi_id' => $presensi->presensi_id,
                 'presensi_status' => $presensi_status,
-                'presensi_keterangan_masuk' => $presensi->presensi_keterangan_masuk ?: '-',
-                'presensi_keterangan_pulang' => $presensi->presensi_keterangan_pulang ?: '-',
+                'presensi_keterangan' => $presensi->presensi_keterangan ?: '-',
                 'user_id' => $presensi->user_id,
                 'presensi_tanggal' => $created_at->translatedFormat('l, d F Y'),
                 'presensi_pukul' => $presensi_pukul,
@@ -107,8 +105,7 @@ class Presensi extends Model
             return [
                 'presensi_id' => $presensi->presensi_id,
                 'presensi_status' => $presensi_status,
-                'presensi_keterangan_masuk' => $presensi->presensi_keterangan_masuk ?: '-',
-                'presensi_keterangan_pulang' => $presensi->presensi_keterangan_pulang ?: '-',
+                'presensi_keterangan' => $presensi->presensi_keterangan ?: '-',
                 'user_id' => $presensi->user_id,
                 'presensi_tanggal' => $created_at->translatedFormat('l, d F Y'),
                 'presensi_pukul' => $presensi_pukul,
