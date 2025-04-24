@@ -45,7 +45,19 @@
                 <button type="button" class="ms-auto hover bg-info border-light text-light rounded-circle he-28 we-28" data-bs-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">
-                Apakah Anda yakin ingin menghapus sesi ini?
+                <div class="row m-0 p-0">
+                    <div class="col-4">Nama</div>
+                    <div class="col-1">:</div>
+                    <div class="col-7">{{ $x['user_nama'] }}</div>
+                    <!--  -->
+                    <div class="col-4">Status</div>
+                    <div class="col-1">:</div>
+                    <div class="col-7">{{ $x['status'] }}</div>
+                    <!--  -->
+                    <div class="col-4">Keterangan</div>
+                    <div class="col-1">:</div>
+                    <div class="col-7">{{ $x['presensi_keterangan'] }}</div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keluar</button>

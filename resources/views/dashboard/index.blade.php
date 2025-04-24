@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-6 m-0 p-0">
                     @if($issetPresensi == true)
-                        <div class="card hover cursor-pointer rounded-xs m-0 me-3 ms-1 my-3 p-0 {{ ($pulang == null) ? 'bg-clr5' : 'bg-secondary' }}" data-bs-toggle="modal" data-bs-target="{{ ($pulang !== null) ? '#modalPulang' : '#modalWarningPulang' }}">
+                        <div class="card hover cursor-pointer rounded-xs m-0 me-3 ms-1 my-3 p-0 {{ ($pulang == null) ? 'bg-clr5' : 'bg-secondary' }}" data-bs-toggle="modal" data-bs-target="{{ $pulang == false && $pulang_active == true ? '#modalPulang' : '#modalWarningPulang' }}">
                             <div class="row text-light m-0 p-0">
                                 <div class="col-3 m-0 p-0 py-2 d-flex justify-content-center align-items-center">
                                     <img src="{{ url('assets/images/static/icons/dashboard-masuk.png') }}" class="w-75">

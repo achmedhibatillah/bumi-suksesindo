@@ -22,6 +22,7 @@ class DashboardController extends Controller
 
         $sesiData = Sesi::whereRaw('sesi_masuk - INTERVAL 1 HOUR <= ?', [now()])->where('sesi_pulang', '>=', now())->first();
 
+        $pulang_active = false;
         if (isset($sesiData)) {
             $issetPresensi = true;
             
@@ -32,6 +33,11 @@ class DashboardController extends Controller
                 $masuk = date('H:i:s', strtotime($presensiData->created_at));
                 $pulang = date('H:i:s', strtotime($presensiData->updated_at));
                 $pulang = ($masuk == $pulang) ? false : $pulang;
+
+                $sesi = date('H:i:s', strtotime($sesiData->sesi_masuk));
+                $pulang_active = ($masuk == $sesi) ? false : true;
+
+                // dd([$issetPresensi, $presensiExist, $masuk, $pulang, $pulang_active]);
             } else {
                 $masuk = null;
                 $pulang = null;
@@ -70,6 +76,7 @@ class DashboardController extends Controller
             'issetPresensi' => $issetPresensi,
             'masuk' => $masuk,
             'pulang' => $pulang,
+            'pulang_active' => $pulang_active,
             'accumulative' => $accumulative,
             'presensi' => $presensiData
         ]) . 

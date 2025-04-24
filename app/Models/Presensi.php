@@ -159,6 +159,7 @@ class Presensi extends Model
                     'user_nama' => optional($presensi->user)->user_nama ?? '(Nama tidak ditemukan)',
                     'user_id' => $presensi->user_id,
                     'presensi_id' => $presensi->presensi_id,
+                    'presensi_keterangan' => $presensi->presensi_keterangan,
                     'status' => $presensi_status,
                     'pukul' => $presensi_pukul,
                 ];
