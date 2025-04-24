@@ -21,6 +21,11 @@ class Lembur extends Model
         'user_id',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }    
+
     public static function getLemburByUser($user_id)
     {
         $paginator = self::where('user_id', $user_id)
@@ -40,6 +45,12 @@ class Lembur extends Model
                 $lembur_status = 'Kadaluarsa';
             } else if ($lembur->lembur_status == 0 && $lembur->lembur_tgl > now()) {
                 $lembur_status = 'Menunggu konfirmasi';
+            } else if ($lembur->lembur_status == 1) {
+                $lembur_status = 'Disetujui';
+            } else if ($lembur->lembur_status == 2) {
+                $lembur_status = 'Ditolak';
+            } else {
+                $lembur_status = '';
             }
         
             return [
@@ -59,10 +70,10 @@ class Lembur extends Model
         return $paginator;
     }
     
-    public static function getLembur($user_id)
+    public static function getLembur()
     {
-        $paginator = self::
-            orderBy('created_at', 'desc')
+        $paginator = self::with('user')
+            ->orderBy('created_at', 'desc')
             ->paginate(10);
     
 
@@ -76,11 +87,24 @@ class Lembur extends Model
 
             if ($lembur->lembur_status == 0 && $lembur->lembur_tgl <= now()) {
                 $lembur_status = 'Kadaluarsa';
+                $lembur_konfirm = false;
             } else if ($lembur->lembur_status == 0 && $lembur->lembur_tgl > now()) {
                 $lembur_status = 'Menunggu konfirmasi';
+                $lembur_konfirm = true;
+            } else if ($lembur->lembur_status == 1) {
+                $lembur_status = 'Disetujui';
+                $lembur_konfirm = false;
+            } else if ($lembur->lembur_status == 2) {
+                $lembur_status = 'Ditolak';
+                $lembur_konfirm = false;
+            } else {
+                $lembur_status = '';
+                $lembur_konfirm = false;
             }
-        
+
             return [
+                'user_id' => $lembur->user_id,
+                'user_nama' => $lembur->user?->user_nama,
                 'lembur_id' => $lembur->lembur_id,
                 'lembur_tgl' => Carbon::parse($lembur->lembur_tgl)->translatedFormat('l, d F Y'),
                 'lembur_mulai' => $lembur->lembur_mulai,
@@ -88,6 +112,7 @@ class Lembur extends Model
                 'lembur_durasi' => $lembur_durasi,
                 'lembur_catatan' => $lembur->lembur_catatan,
                 'lembur_status' => $lembur_status,
+                'lembur_konfirm' => $lembur_konfirm,
                 'created_at' => $lembur->created_at,
                 'updated_at' => $lembur->updated_at,
             ];

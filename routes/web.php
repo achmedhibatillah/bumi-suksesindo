@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CutiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LemburController;
@@ -35,6 +36,7 @@ Route::middleware([UserMiddleware::class])->group(function () {
     Route::post('lembur/request', [LemburController::class, 'request']);
 
     Route::get('izin-cuti', [DashboardController::class, 'cuti']);
+    Route::post('izin-cuti/request', [CutiController::class, 'request']);
 
     Route::get('kalender-perusahaan', [DashboardController::class, 'kalender']);
 });
@@ -56,4 +58,5 @@ Route::middleware([RootMiddleware::class])->group(function () {
     Route::post('root/sesi/del', [RootController::class, 'sesi_del']);
 
     Route::get('root/lembur', [RootController::class, 'lembur']);
+    Route::post('root/lembur/response', [RootController::class, 'lembur_response']);
 });

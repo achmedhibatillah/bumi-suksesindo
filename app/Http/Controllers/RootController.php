@@ -205,4 +205,15 @@ class RootController extends Controller
         view('templates/footbar-root') . 
         view('templates/footer');
     }
+
+    public function lembur_response(Request $request)
+    {
+        if ($request->status == 'true') {
+            Lembur::where('lembur_id', $request->lembur_id)->update(['lembur_status' => 1]);
+            return redirect()->back()->with('success', 'Pengajuan lembur dari '. $request->user_nama . ' berhasil disetujui.');
+        } else {
+            Lembur::where('lembur_id', $request->lembur_id)->update(['lembur_status' => 2]);
+            return redirect()->back()->with('success', 'Pengajuan lembur dari '. $request->user_nama . ' berhasil ditolak.');
+        }
+    }
 }
