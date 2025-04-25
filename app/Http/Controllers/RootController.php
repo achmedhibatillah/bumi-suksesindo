@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cuti;
+use App\Models\Kalender;
 use App\Models\Lembur;
 use App\Models\Presensi;
 use App\Models\Sesi;
@@ -250,4 +251,25 @@ class RootController extends Controller
             return redirect()->back()->with('success', 'Pengajuan cuti dari '. $request->user_nama . ' berhasil ditolak.');
         }
     }
+
+    public function kalender(Request $request)
+    {
+        $data = [
+            'title' => 'Root - Atur Kalender',
+            'page' => 'kalender',
+        ];
+    
+        $tanggal = $request->tgl ?? now();
+        $kalenderData = Kalender::getKalenderAfter30Day($tanggal);
+    
+        return
+            view('templates/header') . 
+            view('templates/sidebar-root', $data) . 
+            view('root/kalender', [
+                'kalender' => $kalenderData,
+            ]) . 
+            view('templates/footbar-root') . 
+            view('templates/footer');
+    }
+    
 }

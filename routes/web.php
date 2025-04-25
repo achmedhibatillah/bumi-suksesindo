@@ -61,5 +61,7 @@ Route::middleware([RootMiddleware::class])->group(function () {
     Route::post('root/lembur/response', [RootController::class, 'lembur_response']);
 
     Route::get('root/cuti', [RootController::class, 'cuti']);
-    Route::post('root/cuti/response', [RootController::class, 'cuti_response']);
+    Route::post('root/cuti/response', [RootController::class, 'cuti_response']); 
+
+    Route::get('root/kalender', [RootController::class, 'kalender']);
 });
