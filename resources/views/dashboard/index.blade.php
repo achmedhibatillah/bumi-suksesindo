@@ -1,5 +1,5 @@
 <div class="row m-0 p-0">
-    <div class="mb-3 col-md-6 col-lg-4 col-xxl-3 m-0 p-0 pe-0 pe-md-2">
+    <div class="mb-3 col-md-6 col-lg-5 col-xxl-3 m-0 p-0 pe-0 pe-md-2">
         <div class="card border-none shadow-l-2 rounded-s overflow-hidden m-0 p-0">
             <div class="bg-clr2 text-light d-flex align-items-end">
                 <h5 class="m-0 my-4 ms-4">Presensi Kehadiran</h5>
@@ -105,11 +105,15 @@
                 <p class="text-center m-0">Total Telat</p>
             </div>
             <div class="bg-light d-flex justify-content-center py-5 px-3">
-                <div class="d-flex align-items-end">
-                    <h3 class="text-clr2 m-0 fw-bold">{{ $accumulative['total_telat']['jam'] }}</h3>
-                    <p class="m-0 mb-1 fsz-10 ms-1 text-clr3">Jam</p>
-                    <h3 class="text-clr2 m-0 fw-bold">{{ $accumulative['total_telat']['menit'] }}</h3>
-                    <p class="m-0 mb-1 fsz-10 ms-1 text-clr3">Menit</p>
+                <div class="d-flex align-items-end gap-2">
+                    <div class="d-flex align-items-end">
+                        <h3 class="text-clr2 m-0 fw-bold">{{ $accumulative['total_telat']['jam'] }}</h3>
+                        <p class="m-0 mb-1 fsz-10 ms-1 text-clr3">Jam</p>
+                    </div>
+                    <div class="d-flex align-items-end">
+                        <h3 class="text-clr2 m-0 fw-bold">{{ $accumulative['total_telat']['menit'] }}</h3>
+                        <p class="m-0 mb-1 fsz-10 ms-1 text-clr3">Menit</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -168,35 +172,43 @@
 <!-- Modal -->
 <div class="modal fade" id="modalMasuk" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <form action="{{ url('presensi-masuk') }}" method="post" class="text-clr2">
-        @csrf
-            <div class="modal-content border-light rounded-m">
-                <div class="modal-header bg-clr2 text-light">
-                    <h1 class="modal-title fw-bold">Rekap Masuk</h1>
-                    <button type="button" class="ms-auto hover bg-clr2 border-light text-light rounded-circle he-28 we-28" data-bs-dismiss="modal" aria-label="Close">x</button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <p class="m-0">Presensi (masuk) terekap pada :</p>
-                        <div class="d-flex fw-bold">
-                            <p class="m-0 hari-now"></p>, <p class="ms-1 m-0 tanggal-now"></p>
-                        </div>
-                        <div class="d-flex fw-bold">
-                            <p class="m-0 clock-now"></p>
-                            <p class="ms-1 m-0">WIB</p>
-                        </div>
+        <div class="modal-content border-light rounded-m">
+            <div class="modal-header bg-clr2 text-light">
+                <h1 class="modal-title fw-bold">Rekap Masuk</h1>
+                <button type="button" class="ms-auto hover bg-clr2 border-light text-light rounded-circle he-28 we-28" data-bs-dismiss="modal" aria-label="Close">x</button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <p class="m-0">Presensi (masuk) terekap pada :</p>
+                    <div class="d-flex fw-bold">
+                        <p class="m-0 hari-now"></p>, <p class="ms-1 m-0 tanggal-now"></p>
                     </div>
-                    <div class="">
+                    <div class="d-flex fw-bold">
+                        <p class="m-0 clock-now"></p>
+                        <p class="ms-1 m-0">WIB</p>
+                    </div>
+                </div>
+                <form action="{{ url('presensi-masuk') }}" method="post" class="text-clr2" id="formMasuk">
+                    @csrf
+                    <div class="mb-3">
                         <label for="presensi_keterangan">Tambah keterangan <i class="fst-normal text-secondary ms-2">Opsional</i></label>
                         <input name="presensi_keterangan" type="text" class="rounded-s border-clr2 bg-clrsec he-35 w-100 px-3 fsz-11" autocomplete="off" placeholder="...">
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-clr2">Simpan</button>
-                </div>
+                    <div class="mb-3 col-6">
+                        <label for="presensi_status" class="form-label">Status Presensi</label>
+                        <select class="form-select rounded-s border-clr2 m-0" id="presensi_status" name="presensi_status" required>
+                            <option value="1" selected>Hadir</option>
+                            <option value="3">Izin</option>
+                        </select>
+                    </div>
+                    
+                </form>
             </div>
-        </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-clr2" id="btnFormMasuk">Simpan</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -245,3 +257,9 @@
             </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('btnFormMasuk').addEventListener('click', function() {
+        document.getElementById('formMasuk').submit();
+    });
+</script>

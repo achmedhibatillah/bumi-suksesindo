@@ -22,6 +22,11 @@ class PresensiController extends Controller
         $presensi_id = Presensi::where('user_id', session('user')['user_id'])->whereDate('created_at', now())->first()->presensi_id;
 
         $presensi_status = now()->lessThan($sesiData->sesi_masuk) ? 1 : 2;
+
+        if ($request->presensi_status == 3) {
+            $presensi_status = 3;
+        }
+
         $presensiData = [
             'presensi_status' => $presensi_status,
             'presensi_keterangan' => $request->presensi_keterangan,

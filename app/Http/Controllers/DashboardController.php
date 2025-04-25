@@ -33,7 +33,7 @@ class DashboardController extends Controller
                 ->first();
         
             if ($presensiData && $presensiData->presensi_status != 4) {
-                if ($presensiData->presensi_status == 5) {
+                if ($presensiData->presensi_status == 5 || $presensiData->presensi_status == 3) {
                     $issetPresensi = false;
                     $masuk = null;
                     $pulang = null;
@@ -58,23 +58,54 @@ class DashboardController extends Controller
 
         $presensiData = Presensi::getAllInOneMonthByUser(session('user')['user_id']);
 
+        $totalTelatJam = 0;
+        $totalTelatMenit = 0;
+        
+        $presensiTelat = Presensi::where('user_id', session('user')['user_id'])
+            ->where('presensi_status', 2)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->get();
+        
+        foreach ($presensiTelat as $presensi) {
+            $sesi = Sesi::whereDate('sesi_masuk', Carbon::parse($presensi->created_at)->toDateString())->first();
+        
+            if ($sesi) {
+                $sesiMasuk = Carbon::parse($sesi->sesi_masuk);
+                $presensiMasuk = Carbon::parse($presensi->created_at);
+        
+
+                $diffInMinutes = $presensiMasuk->gt($sesiMasuk)
+                ? $presensiMasuk->diffInMinutes($sesiMasuk)
+                : 0;
+            
+        
+                $totalTelatJam += floor($diffInMinutes / 60);
+                $totalTelatMenit += $diffInMinutes % 60;
+            }
+        }
+                    
+        if ($totalTelatMenit >= 60) {
+            $extraJam = floor($totalTelatMenit / 60);
+            $totalTelatJam += $extraJam;
+            $totalTelatMenit = $totalTelatMenit % 60;
+        }
+        
         $accumulative = [
             'total_shift' => Presensi::where('user_id', session('user')['user_id'])
                 ->whereMonth('created_at', Carbon::now()->month)
                 ->where(function($q) {
                     $q->where('presensi_status', 1)
-                    ->orWhere('presensi_status', 4);
+                      ->orWhere('presensi_status', 2);
                 })->count(),
             'total_izin' => Presensi::where('user_id', session('user')['user_id'])
                 ->whereMonth('created_at', Carbon::now()->month)
-                ->where(function($q) {
-                    $q->where('presensi_status', 3);
-                })->count(),
+                ->where('presensi_status', 3)
+                ->count(),
             'total_telat' => [
-                'jam' => 0,
-                'menit' => 0,
+                'jam' => $totalTelatJam == 0 ? 0 : abs($totalTelatJam) - 1,
+                'menit' => abs($totalTelatMenit),
             ]
-        ];
+        ];        
 
         return
         view('templates/header', $data) . 
