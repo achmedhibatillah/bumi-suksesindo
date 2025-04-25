@@ -71,7 +71,7 @@
         <table class="table">
             <thead>
                 <th>No</th>
-                <th>Tanggal pengajuan</th>
+                <th>Tanggal pelaksanaan</th>
                 <th>Jam mulai</th>
                 <th>Jam selesai</th>
                 <th>Durasi</th>

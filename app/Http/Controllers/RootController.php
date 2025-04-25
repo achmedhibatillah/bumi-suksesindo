@@ -168,10 +168,13 @@ class RootController extends Controller
         $usersData = User::get();
 
         foreach($usersData as $x) {
+            $cutiData = Cuti::where('user_id', $x->user_id)->whereDate('created_at', $sesi_masuk->toDateString())->where('cuti_verif', 1)->first();
+            
             Presensi::create([
                 'presensi_id' => $logic->generateUniqueId('presensi', 'presensi_id'),
                 'user_id' => $x->user_id,
-                'presensi_status' => 4
+                'presensi_status' => ($cutiData) ? 5 : 4,
+                'presensi_keterangan' => ($cutiData) ? $cutiData->cuti_alasan : null,
             ]);
         }
 

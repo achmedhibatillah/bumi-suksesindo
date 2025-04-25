@@ -19,6 +19,7 @@ return new class extends Migration
             // 2 = Telat
             // 3 = Izin
             // 4 = Alpha
+            // 5 = Cuti
             $table->string('presensi_keterangan', 255)->nullable();
             $table->string('user_id', 35);
             $table->timestamps();

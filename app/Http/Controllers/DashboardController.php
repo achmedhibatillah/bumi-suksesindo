@@ -23,31 +23,38 @@ class DashboardController extends Controller
         $sesiData = Sesi::whereRaw('sesi_masuk - INTERVAL 1 HOUR <= ?', [now()])->where('sesi_pulang', '>=', now())->first();
 
         $pulang_active = false;
+        $pulang_active = false;
+
         if (isset($sesiData)) {
             $issetPresensi = true;
-            
-            $presensiExist = Presensi::whereDate('created_at', Carbon::today())->where('user_id', session('user')['user_id'])->where('presensi_status', '!=', 4)->exists();
-            $masuk = ($presensiExist) ? date('H:i:s', strtotime(Presensi::whereDate('created_at', Carbon::today())->where('user_id', session('user')['user_id'])->first()->created_at)) : null ;
-            if ($presensiExist) {
-                $presensiData = Presensi::whereDate('created_at', Carbon::today())->where('user_id', session('user')['user_id'])->first();
-                $masuk = date('H:i:s', strtotime($presensiData->created_at));
-                $pulang = date('H:i:s', strtotime($presensiData->updated_at));
-                $pulang = ($masuk == $pulang) ? false : $pulang;
-
-                $sesi = date('H:i:s', strtotime($sesiData->sesi_masuk));
-                $pulang_active = ($masuk == $sesi) ? false : true;
-
-                // dd([$issetPresensi, $presensiExist, $masuk, $pulang, $pulang_active]);
+        
+            $presensiData = Presensi::whereDate('created_at', Carbon::today())
+                ->where('user_id', session('user')['user_id'])
+                ->first();
+        
+            if ($presensiData && $presensiData->presensi_status != 4) {
+                if ($presensiData->presensi_status == 5) {
+                    $issetPresensi = false;
+                    $masuk = null;
+                    $pulang = null;
+                } else {
+                    $masuk = date('H:i:s', strtotime($presensiData->created_at));
+                    $pulang = date('H:i:s', strtotime($presensiData->updated_at));
+                    $pulang = ($masuk == $pulang) ? false : $pulang;
+        
+                    $sesi = date('H:i:s', strtotime($sesiData->sesi_masuk));
+                    $pulang_active = ($masuk == $sesi) ? false : true;
+                }
             } else {
                 $masuk = null;
                 $pulang = null;
-                // dd([$issetPresensi, $presensiExist, $masuk, $pulang]);
             }
         } else {
             $issetPresensi = false;
             $masuk = null;
             $pulang = null;
         }
+        
 
         $presensiData = Presensi::getAllInOneMonthByUser(session('user')['user_id']);
 

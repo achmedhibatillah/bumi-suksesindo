@@ -74,7 +74,7 @@ class Lembur extends Model
     {
         $paginator = self::with('user')
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->paginate(30);
     
 
         $paginator->getCollection()->transform(function ($lembur) {

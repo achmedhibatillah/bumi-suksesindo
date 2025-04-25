@@ -29,7 +29,7 @@ class CutiController extends Controller
 
         $mulai = Carbon::createFromFormat('Y-m-d', $request->cuti_mulai);
         $selesai = Carbon::createFromFormat('Y-m-d', $request->cuti_selesai);        
-        if ($mulai >= $selesai) {
+        if ($mulai > $selesai) {
             return back()->withErrors(['cuti_mulai' => 'Waktu mulai harus lebih kecil dari waktu selesai.'])->withInput();
         }
 

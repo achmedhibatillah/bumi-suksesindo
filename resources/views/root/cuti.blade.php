@@ -54,6 +54,7 @@
                                                 <p class="m-0">{{ $x['cuti_mulai'] }} - {{ $x['cuti_selesai'] }}</p>
                                                 <p class="m-0">Durasi : {{ $x['cuti_durasi'] }}</p>
                                                 <p class="m-0">Status : {{ $x['cuti_status'] }}</p>
+                                                <p class="m-0">Alasan : {{ $x['cuti_alasan'] }}</p>
                                                 <a href="{{ url('uploads/CTI-' . $x['cuti_id'] . '.pdf') }}" target="_blank" class="td-hover mt-3 d-block">Lihat file <i class="fas fa-file-pdf"></i></a>
                                             </div>
                                             <div class="modal-footer">

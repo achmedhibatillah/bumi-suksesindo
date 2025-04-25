@@ -8,6 +8,7 @@
                 <div class="w-100 overflow-x-scroll">
                     <table class="table">
                         <thead class="table-secondary">
+                            <th>No</th>
                             <th>Nama Karyawan</th>
                             <th>Tanggal</th>
                             <th>Masuk</th>
@@ -16,8 +17,10 @@
                             <th></th>
                         </thead>
                         <tbody>
+                            @php($i = $lembur->firstItem())
                             @foreach($lembur as $x)
                                 <tr>
+                                    <td>{{ $i }}</td>
                                     <td><a href="{{ url('root/karyawan/' . $x['user_id']) }}" target="_blank" class="td-hover">{{ $x['user_nama'] }}</a></td>
                                     <td>
                                         <p class="m-0">{{ $x['lembur_tgl'] }}</p>
@@ -72,12 +75,16 @@
                                         </div>
                                     </div>
                                 </div>
+                                @php($i++)
                             @endforeach
                         </tbody>
                     </table>
                 </div>
+                <div class="d-flex justify-content-end">
+                    @include('templates/pagination', ['xxx' => $lembur])
+                </div>
             @else 
-                <div class="m-0 text-secondary">Belum ada lembur tersedia.</div>
+                <div class="m-0 text-secondary">Belum ada pengajuan lembur tersedia.</div>
             @endif
         </div>
     </div>

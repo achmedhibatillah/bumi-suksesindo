@@ -46,6 +46,8 @@ class Presensi extends Model
                 $presensi_status = 'Izin';
             } elseif ($status == 4) {
                 $presensi_status = 'Alpha';
+            } elseif ($status == 5) {
+                $presensi_status = 'Cuti';
             } else {
                 $presensi_status = 'Tidak Diketahui';
             }
@@ -90,6 +92,8 @@ class Presensi extends Model
                 $presensi_status = 'Izin';
             } elseif ($status == 4) {
                 $presensi_status = 'Alpha';
+            } elseif ($status == 5) {
+                $presensi_status = 'Cuti';
             } else {
                 $presensi_status = 'Tidak Diketahui';
             }
@@ -143,6 +147,8 @@ class Presensi extends Model
                     $presensi_status = 'Izin';
                 } elseif ($status == 4) {
                     $presensi_status = 'Alpha';
+                } elseif ($status == 5) {
+                    $presensi_status = 'Cuti';
                 } else {
                     $presensi_status = 'Tidak Diketahui';
                 }

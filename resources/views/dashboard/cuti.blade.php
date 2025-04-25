@@ -73,6 +73,7 @@
         <div class="w-100 overflow-x-scroll p-3">
             <table class="table">
                 <thead>
+                    <th>No</th>
                     <th>Pengajuan</th>
                     <th>Mulai</th>
                     <th>Selesai</th>
@@ -81,8 +82,10 @@
                     <th></th>
                 </thead>
                 <tbody>
+                    @php($i = $cuti->firstItem())
                     @foreach($cuti as $x)
                         <tr>
+                            <td>{{ $i }}</td>
                             <td>{{ $x['created_at'] }}</td>
                             <td>{{ $x['cuti_mulai'] }}</td>
                             <td>{{ $x['cuti_selesai'] }}</td>
@@ -138,6 +141,7 @@
                                 </div>
                             </div>
                         </div>
+                        @php($i++)
                     @endforeach
                 </tbody>
             </table>
