@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('kalender_id', 35)->primary();
             $table->date('kalender_tgl')->unique();
             $table->string('kalender_kegiatan', 350);
+            $table->integer('kalender_style');
             $table->timestamps();
         });
     }
