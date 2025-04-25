@@ -267,9 +267,44 @@ class RootController extends Controller
             view('templates/sidebar-root', $data) . 
             view('root/kalender', [
                 'kalender' => $kalenderData,
+                'tgl' => $tanggal,
+                'tgl_30' => Carbon::parse($tanggal)->copy()->addDays(30)->format('Y-m-d')
             ]) . 
             view('templates/footbar-root') . 
             view('templates/footer');
     }
     
+    public function kalender_add(Request $request)
+    {
+        $request->validate([
+            'kalender_tgl' => 'required|unique:kalender,kalender_tgl',
+            'kalender_kegiatan' => 'required|max:350',
+            'kalender_style' => 'required',
+        ], [
+            'kalender_tgl.required' => 'Tanggal harus diisi.',
+            'kalender_tgl.unique' => 'Tanggal tersebut sudah terisi.',
+            'kalender_kegiatan.required' => 'Kegiatan harus diisi.',
+            'kalender_kegiatan.max' => 'Maksimal 350 karakter.',
+            'kalender_style.required' => 'Warna harus diisi.',
+        ]);   
+        
+        $logic = new LogicController();
+        $kalenderData = [
+            'kalender_id' => $logic->generateUniqueId('kalender', 'kalender_id'),
+            'kalender_tgl' => $request->kalender_tgl,
+            'kalender_kegiatan' => $request->kalender_kegiatan,
+            'kalender_style' => $request->kalender_style,
+        ];
+
+        Kalender::create($kalenderData);
+
+        return redirect()->back()->with('success', 'Berhasil menambahkan kegiatan pada tanggal ' . $kalenderData['kalender_tgl'] . '.');
+    }
+
+    public function kalender_delete(Request $request)
+    {
+        $kalenderData = Kalender::where('kalender_id', $request->kalender_id)->first();
+        Kalender::where('kalender_id', $request->kalender_id)->delete();
+        return redirect()->back()->with('success', 'Berhasil menghapus kegiatan pada tanggal ' . $kalenderData['kalender_tgl'] . '.');
+    }
 }

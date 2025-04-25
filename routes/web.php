@@ -64,4 +64,6 @@ Route::middleware([RootMiddleware::class])->group(function () {
     Route::post('root/cuti/response', [RootController::class, 'cuti_response']); 
 
     Route::get('root/kalender', [RootController::class, 'kalender']);
+    Route::post('root/kalender/add', [RootController::class, 'kalender_add']);
+    Route::post('root/kalender/delete', [RootController::class, 'kalender_delete']);
 });

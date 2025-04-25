@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cuti;
+use App\Models\Kalender;
 use App\Models\Lembur;
 use App\Models\Presensi;
 use App\Models\Sesi;
@@ -203,12 +204,14 @@ class DashboardController extends Controller
             'page' => 'kalender',
         ];
 
-        $user = User::where('user_id', session('user')['user_id'])->first();
+        $kalender = Kalender::getKalender();
 
         return
         view('templates/header', $data) . 
         view('templates/sidebar-user', $data) . 
-        view('dashboard/kalender') . 
+        view('dashboard/kalender', [
+            'kalender' => $kalender
+        ]) . 
         view('templates/footbar-user') . 
         view('templates/footer');
     }

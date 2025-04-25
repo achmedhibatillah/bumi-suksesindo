@@ -44,16 +44,13 @@
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         events: [
-        {
-            title: 'Rapat Koordinasi',
-            start: '2025-04-17',
-            className: 'event-rapat'
-        },
-        {
-            title: 'Outing Kantor',
-            start: '2025-04-25',
-            className: 'event-outing'
-        }
+        @foreach($kalender as $x)
+          {
+            title: {!!'\'' . $x['kalender_kegiatan'] . '\''!!},
+            start: {!!'\'' . $x['kalender_tgl'] . '\''!!},
+            className: {!!'\'' . $x['kalender_style'] . '\''!!}
+          },
+        @endforeach
         ]
     });
 
