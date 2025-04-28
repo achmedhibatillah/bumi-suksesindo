@@ -11,7 +11,7 @@ use App\Http\Middleware\RootMiddleware;
 use App\Http\Middleware\UserMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-
+ 
 Route::get('/', [GuestController::class, 'index']); 
 Route::get('s', function() { return response()->json(Session::all()); }); 
 Route::get('logout', function() { Session::flush(); return redirect()->to(''); }); 
