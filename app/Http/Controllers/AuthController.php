@@ -24,7 +24,7 @@ class AuthController extends Controller
         if ($request->token === env('ROOT_TOKEN')) {
             Session::flush();
             $request->session()->put('is_root', true);
-            return redirect('root/index');
+            return redirect('root/karyawan');
         }
 
         return redirect()->back()->with('error', 'Token tidak valid.');

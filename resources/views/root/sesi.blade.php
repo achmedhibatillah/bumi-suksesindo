@@ -29,8 +29,8 @@
                                     </td>
                                     <td>{{ $x['status'] }}</td>
                                     <td>
-                                        <div class="d-flex justify-content-center">
-                                            <a href="#" class="btn btn-danger fsz-10" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $x['sesi_id'] }}"><i class="fas fa-trash"></i></a>
+                                        <div class="d-flex">
+                                            <a href="#" class="btn btn-danger fsz-10" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $x['sesi_id'] }}">hapus <i class="fas fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

@@ -10,7 +10,7 @@
             </div>
             <div class="d-flex flex-column justify-content-center mt-5">
                 <p class="text-light mb-4 mx-4">ROOT</p>
-                <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'homepage') ? 'sidebar-active' : '' }}" href="{{url('root/index')}}"
+                {{-- <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'homepage') ? 'sidebar-active' : '' }}" href="{{url('root/index')}}"
                 data-bs-toggle="tooltip" title="Index">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">
                         <div class="d-flex justify-content-center" style="width:23px;">
@@ -18,7 +18,7 @@
                         </div>
                         <p class="menu-resp-text text-light m-0 ms-3">Index</p>
                     </div>
-                </a>
+                </a> --}}
                 <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'karyawan') ? 'sidebar-active' : '' }}" href="{{url('root/karyawan')}}"
                 data-bs-toggle="tooltip" title="Data Karyawan">
                     <div class="menu-resp-icon d-flex align-items-center mx-4 p-0">

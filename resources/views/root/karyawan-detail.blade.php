@@ -1,8 +1,13 @@
 <div class="row m-0 p-0">
     <div class="col-md-6 m-0 p-0 pe-0 pe-md-2">
         <div class="card m-0 p-3 shadow-m rounded-s mb-4">
-            <h4 class="text-clr2 fw-bold">{{ $karyawan['user_nama'] }}</h4>
-            <p class="fsz-10 text-secondary">{{ $karyawan['user_id'] }}</p>
+            <div class="d-flex gap-3">
+                <img src="{{ asset('uploads/PP-' . $karyawan['user_id'] . '.png') }}" class="rounded-circle square" style="width:100px">
+                <div class="">
+                    <h4 class="text-clr2 fw-bold">{{ $karyawan['user_nama'] }}</h4>
+                    <p class="fsz-10 text-secondary">{{ $karyawan['user_id'] }}</p>
+                </div>
+            </div>
             <hr>
             <div class="">
                 <p class="m-0 fsz-12">Email :</p>
