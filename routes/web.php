@@ -7,6 +7,7 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LemburController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\RootController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\RootMiddleware;
 use App\Http\Middleware\UserMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,10 @@ Route::middleware([UserMiddleware::class])->group(function () {
     Route::post('izin-cuti/request', [CutiController::class, 'request']);
 
     Route::get('kalender-perusahaan', [DashboardController::class, 'kalender']);
+
+    Route::get('profil-saya', [DashboardController::class, 'profil']);
+    Route::post('profil/pp', [UserController::class, 'profil_pp']);
+    Route::post('profil/nama', [UserController::class, 'profil_nama']);
 });
 
 // Root

@@ -33,25 +33,13 @@
                 </div>
             </div>
             <div class="row m-0 p-0 pt-4">
-                <div class="col-md-8 m-0 p-1">
+                <div class="col-md-12 m-0 p-1">
                     <p class="text-clr2 fw-bold mb-1">Catatan / Deskripsi Tugas Lembur</p>
                     <input name="lembur_catatan" type="text" class="form-control border-clr2 rounded-s" placeholder="..." autocomplete="off"
                     value="{{ old('lembur_catatan') }}">
                     @error('lembur_catatan')
                         <div class="fsz-10 text-danger ms-2"><i class="fas fa-exclamation-circle me-1"></i>{{ $message }}</div>
                     @enderror
-                </div>
-                <div class="col-md-4 m-0 p-1 pt-4 pt-md-1">
-                    <p class="text-clr2 text-center fw-bold mb-1">File Pendukung (PDF, maks 10 MB)</p>
-                    <input name="lembur_file" type="file" class="form-control border-clr2 rounded-s"
-                    accept="application/pdf">
-                    @if(session('errors') && session('errors')->has('lembur_file'))
-                        <div class="fsz-10 text-danger ms-2">
-                            <i class="fas fa-exclamation-circle me-1"></i>{{ session('errors')->first('lembur_file') }}
-                        </div>
-                    @elseif(session('errors'))
-                        <div class="fsz-10 text-danger ms-2"><i class="fas fa-exclamation-circle me-1"></i>Silakan upload ulang file.</div>
-                    @endif
                 </div>
             </div>
             <div class="d-flex justify-content-end">
@@ -98,11 +86,11 @@
                                 <button type="button" class="ms-auto hover bg-clr2 border-light text-light rounded-circle he-28 we-28" data-bs-dismiss="modal" aria-label="Close">x</button>
                             </div>
                             <div class="modal-body">
-                                <h5>{{ $x['lembur_tgl'] }}</h5>
-                                <h5>{{ $x['lembur_mulai'] }} - {{ $x['lembur_selesai'] }}</h5>
-                                <h5>Durasi : {{ $x['lembur_durasi'] }}</h5>
-                                <h5>Status : {{ $x['lembur_status'] }}</h5>
-                                <a href="{{ url('uploads/LMB-' . $x['lembur_id'] . '.pdf') }}" target="_blank" class="btn btn-success">Lihat file <i class="fas fa-file-pdf"></i></a>
+                                {{-- <h5>{{ $x['user_nama'] }}</h5> --}}
+                                <p class="m-0">{{ $x['lembur_tgl'] }}</p>
+                                <p class="m-0">{{ $x['lembur_mulai'] }} - {{ $x['lembur_selesai'] }}</p>
+                                <p class="m-0">Durasi : {{ $x['lembur_durasi'] }}</p>
+                                <p class="m-0">Status : {{ $x['lembur_status'] }}</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keluar</button>

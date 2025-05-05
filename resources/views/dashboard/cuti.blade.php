@@ -43,17 +43,25 @@
                         <div class="fsz-10 text-danger ms-2"><i class="fas fa-exclamation-circle me-1"></i>{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="mb-3">
-                <label for="cuti_file" class="text-clr2 fw-bold mb-1">File Pendukung (PDF, maks 10 MB)</label>
-                    <input name="cuti_file" type="file" class="form-control border-clr2 rounded-s"
-                    accept="application/pdf">
-                    @if(session('errors') && session('errors')->has('cuti_file'))
-                        <div class="fsz-10 text-danger ms-2">
-                            <i class="fas fa-exclamation-circle me-1"></i>{{ session('errors')->first('cuti_file') }}
-                        </div>
-                    @elseif(session('errors'))
-                        <div class="fsz-10 text-danger ms-2"><i class="fas fa-exclamation-circle me-1"></i>Silakan upload ulang file.</div>
-                    @endif
+                <div class="mb-3 row m-0 p-0">
+                    <div class="col-md-4 m-0 p-0 pe-md-1 d-flex align-items-end">
+                        <a href="{{ url('uploads/formulir-pengajuan-cuti.docx') }}" class="border-clr2 rounded-s he-36 w-100 px-3 text-clr2 fsz-10 btn btn-clr2 lh-1 d-flex align-items-center">
+                            <p class="m-0 text-start">Unduh formulir pengajuan cuti</p>
+                            <i class="fas fa-download ms-auto"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-8 m-0 p-0 ps-md-1">
+                        <label for="cuti_file" class="text-clr2 fw-bold mb-1">Formulir (PDF, maks 10 MB)</label>
+                        <input name="cuti_file" type="file" class="form-control border-clr2 rounded-s"
+                        accept="application/pdf">
+                        @if(session('errors') && session('errors')->has('cuti_file'))
+                            <div class="fsz-10 text-danger ms-2">
+                                <i class="fas fa-exclamation-circle me-1"></i>{{ session('errors')->first('cuti_file') }}
+                            </div>
+                        @elseif(session('errors'))
+                            <div class="fsz-10 text-danger ms-2"><i class="fas fa-exclamation-circle me-1"></i>Silakan upload ulang file.</div>
+                        @endif
+                    </div>
                 </div>
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-clr2">

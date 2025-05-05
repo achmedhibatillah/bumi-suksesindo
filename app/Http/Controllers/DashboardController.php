@@ -215,4 +215,29 @@ class DashboardController extends Controller
         view('templates/footbar-user') . 
         view('templates/footer');
     }
+
+    public function profil()
+    {
+        $data = [
+            'title' => 'Profil Saya',
+            'page' => 'profil',
+        ];
+
+        $user = User::where('user_id', session('user')['user_id'])->first();
+
+        $filename = 'uploads/PP-' . $user->user_id . '.png';
+        $filepath = public_path($filename);
+        
+        $pp = file_exists($filepath) ? $filename : null;        
+
+        return
+        view('templates/header', $data) . 
+        view('templates/sidebar-user', $data) . 
+        view('dashboard/profil', [
+            'user' => $user,
+            'pp' => $pp,
+        ]) . 
+        view('templates/footbar-user') . 
+        view('templates/footer');
+    }
 }
