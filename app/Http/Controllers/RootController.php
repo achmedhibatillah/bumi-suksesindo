@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Users;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class RootController extends Controller
 {
@@ -82,6 +83,18 @@ class RootController extends Controller
         ]) . 
         view('templates/footbar-root') . 
         view('templates/footer');
+    }
+
+    public function karyawan_delete(Request $request)
+    {
+        $userId = $request->user_id;
+
+        $file_path = public_path('uploads/PP-' . $userId . '.png');
+        if (File::exists($file_path)) {
+            File::delete($file_path);
+        }
+
+        User::where('user_id', $userId)->delete();
     }
 
     public function sesi()

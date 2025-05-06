@@ -27,7 +27,9 @@
             <div class="modal-body">
                 @if($pp !== null)
                     <div class="d-flex justify-content-center mb-3">
-                        <img src="{{ $pp ? asset($pp) : asset('uploads/default.svg') }}" class="w-50 rounded-circle" alt="Profil">
+                        <div data-bs-toggle="modal" data-bs-target="#modalPicture" class="d-flex flex-shrink-0 justify-content-center align-items-center cursor-pointer position-relative square" style="width:100px">
+                        <img src="{{ $pp ? asset($pp) : asset('uploads/default.svg') }}" class="img-cover rounded-circle" alt="Profil">
+                        </div>
                     </div>
                 @endif 
                 <form action="{{ url('profil/pp') }}" method="post" enctype="multipart/form-data" class="text-clr2" id="formProfil">

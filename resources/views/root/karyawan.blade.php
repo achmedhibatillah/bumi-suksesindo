@@ -29,3 +29,39 @@
         </tbody>
     </table>
 </div>
+
+@foreach($karyawan as $x)
+<!-- Modal -->
+<div class="modal fade" id="modalDel-{{ $x['user_id'] }}" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-dialog modal-sm">
+        <div class="modal-content border-light rounded-m">
+            <div class="modal-header bg-danger text-light">
+                <h1 class="modal-title fs-5"><i class="fas fa-exclamation-circle me-2"></i>Peringatan</h1>
+                <button type="button" class="ms-auto hover bg-danger border-light text-light rounded-circle he-28 we-28" data-bs-dismiss="modal" aria-label="Close">x</button>
+            </div>
+            <div class="modal-body">
+                Apakah Anda yakin ingin menghapus data karyawan ini?
+                <table class="mt-3">
+                    <tr>
+                        <td>Nama</td>
+                        <td>:</td>
+                        <td>{{ $x['user_nama'] }}</td>
+                    </tr>
+                    <td>Email</td>
+                    <td>:</td>
+                    <td>{{ $x['user_email'] }}</td>
+                </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <form action="{{ url('root/karyawan/del') }}" method="post">
+                    @csrf 
+                    <input type="hidden" name="user_id" value="{{ $x['user_id'] }}">
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
