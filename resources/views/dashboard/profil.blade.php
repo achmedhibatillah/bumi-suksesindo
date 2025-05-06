@@ -1,11 +1,11 @@
 <div class="">
     <div class="d-flex align-items-start gap-3">
-        <div data-bs-toggle="modal" data-bs-target="#modalPicture" class="d-flex flex-shrink-0 justify-content-center align-items-center cursor-pointer position-relative" style="width:100px">
+        <div data-bs-toggle="modal" data-bs-target="#modalPicture" class="d-flex flex-shrink-0 justify-content-center align-items-center cursor-pointer position-relative square" style="width:100px">
             <i class="fas fa-pencil position-absolute bg-secondary text-light p-1 fsz-10 rounded-circle" style="right:7px;bottom:7px"></i>
             @if($pp !== null)
-                <img src="{{ $pp ? asset($pp) : asset('uploads/default.svg') }}" class="w-100 img-cover rounded-circle" alt="Profil">
+                <img src="{{ $pp ? asset($pp) : asset('uploads/default.svg') }}" class="img-cover rounded-circle" alt="Profil">
             @else 
-                <img src="{{ asset('assets/images/static/icons/blank-profile.png') }}" class="w-100 img-cover rounded-circle">
+                <img src="{{ asset('assets/images/static/icons/blank-profile.png') }}" class="img-cover rounded-circle">
             @endif
         </div>
         <div class="lh-1 pt-2">
