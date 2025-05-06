@@ -7,7 +7,7 @@
             <input type="hidden" name="user_email" value="{{ $ut->ut_email }}">
             <div class="mb-3">
                 <label for="user_nama" class="text-clr2">Nama Lengkap</label>
-                <input name="user_nama" id="user_nama" type="text" class="rounded-m fsz-10 border-clr2 bg-clrsec w-100 he-40 px-3 @error('user_nama') border-clrdang @enderror" autocomplete="off" placeholder="ex: Regga Ananda"
+                <input name="user_nama" id="user_nama" type="text" class="rounded-m fsz-10 border-clr2 bg-clrsec w-100 he-40 px-3 @error('user_nama') border-clrdang @enderror" autocomplete="off" placeholder="ex: Amanda Faizatun"
                 value="{{ old('user_nama') }}">
                 @error('user_nama')
                     <div class="mt-1 fsz-10 lh-1 text-center text-clrdang"><i class="fas fa-exclamation-circle me-1"></i>{{$message}}</div>

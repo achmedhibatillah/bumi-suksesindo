@@ -95,6 +95,8 @@ class RootController extends Controller
         }
 
         User::where('user_id', $userId)->delete();
+
+        return redirect()->back()->with('success', 'Data karyawan berhasil dihapus.');
     }
 
     public function sesi()

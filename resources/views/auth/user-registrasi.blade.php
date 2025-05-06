@@ -12,7 +12,7 @@
                 @csrf
                 <div class="mb-4">
                     <label for="email" class="fw-bold text-clr2 text-center d-block">Email</label>
-                    <input name="email" id="email" type="text" class="rounded-m he-40 text-center w-100 px-3 fsz-10 border-clr2 bg-clrsec @error('email') border-clrdang @enderror" placeholder="ex: regananda12@gmail.com"
+                    <input name="email" id="email" type="text" class="rounded-m he-40 text-center w-100 px-3 fsz-10 border-clr2 bg-clrsec @error('email') border-clrdang @enderror" placeholder="ex: amanda12@gmail.com"
                     value="{{old('email')}}">
                     @error('email')
                         <div class="mt-1 fsz-10 lh-1 text-center text-clrdang"><i class="fas fa-exclamation-circle me-1"></i>{{$message}}</div>
