@@ -54,7 +54,6 @@
                                                 <p class="m-0">{{ $x['lembur_mulai'] }} - {{ $x['lembur_selesai'] }}</p>
                                                 <p class="m-0">Durasi : {{ $x['lembur_durasi'] }}</p>
                                                 <p class="m-0">Status : {{ $x['lembur_status'] }}</p>
-                                                <a href="{{ url('uploads/LMB-' . $x['lembur_id'] . '.pdf') }}" target="_blank" class="td-hover mt-3 d-block">Lihat file <i class="fas fa-file-pdf"></i></a>
                                             </div>
                                             <div class="modal-footer">
                                                 <form action="{{ url('root/lembur/response') }}" method="post">
