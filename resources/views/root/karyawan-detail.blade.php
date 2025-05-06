@@ -22,12 +22,12 @@
         <form action="{{ url('root/karyawan/' . $karyawan['user_id']) }}" method="get">
                 @csrf 
                 <div class="mb-3">
-                    <label for="" class="text-clr2">Tanggal</label>
+                    <label for="" class="text-clr2">Dari</label>
                     <input type="date" name="tgl_mulai" id="tgl_mulai" class="form-control"
                     value="{{ $tgl['tgl_mulai'] }}">
                 </div>
                 <div class="mb-3">
-                    <label for="" class="text-clr2">Tanggal</label>
+                    <label for="" class="text-clr2">Sampai</label>
                     <input type="date" name="tgl_selesai" id="tgl_selesai" class="form-control"
                     value="{{ $tgl['tgl_selesai'] }}">
                 </div>
