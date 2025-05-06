@@ -3,9 +3,9 @@
         <div data-bs-toggle="modal" data-bs-target="#modalPicture" class="d-flex flex-shrink-0 justify-content-center align-items-center cursor-pointer position-relative" style="width:100px">
             <i class="fas fa-pencil position-absolute bg-secondary text-light p-1 fsz-10 rounded-circle" style="right:7px;bottom:7px"></i>
             @if($pp !== null)
-                <img src="{{ $pp ? asset($pp) : asset('uploads/default.svg') }}" class="w-100 rounded-circle" alt="Profil">
+                <img src="{{ $pp ? asset($pp) : asset('uploads/default.svg') }}" class="w-100 img-cover rounded-circle" alt="Profil">
             @else 
-                <img src="{{ asset('assets/images/static/icons/blank-profile.png') }}" class="w-100 rounded-circle">
+                <img src="{{ asset('assets/images/static/icons/blank-profile.png') }}" class="w-100 img-cover rounded-circle">
             @endif
         </div>
         <div class="lh-1 pt-2">
@@ -54,7 +54,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content border-light rounded-m">
             <div class="modal-header bg-clr2 text-light">
-                <h3 class="modal-title fw-bold">Foto Profil</h3>
+                <h3 class="modal-title fw-bold">Profil</h3>
                 <button type="button" class="ms-auto hover bg-clr2 border-light text-light rounded-circle he-28 we-28" data-bs-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">
