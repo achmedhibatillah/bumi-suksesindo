@@ -6,6 +6,7 @@ use App\Models\Cuti;
 use App\Models\Kalender;
 use App\Models\Lembur;
 use App\Models\Presensi;
+use App\Models\Profil;
 use App\Models\Sesi;
 use App\Models\User;
 use App\Models\Users;
@@ -224,17 +225,19 @@ class DashboardController extends Controller
         ];
 
         $user = User::where('user_id', session('user')['user_id'])->first();
+        $profil = Profil::getProfilByUser($user->user_id);
 
         $filename = 'uploads/PP-' . $user->user_id . '.png';
         $filepath = public_path($filename);
         
-        $pp = file_exists($filepath) ? $filename : null;        
+        $pp = file_exists($filepath) ? $filename : null; 
 
         return
         view('templates/header', $data) . 
         view('templates/sidebar-user', $data) . 
         view('dashboard/profil', [
             'user' => $user,
+            'profil' => $profil,
             'pp' => $pp,
         ]) . 
         view('templates/footbar-user') . 

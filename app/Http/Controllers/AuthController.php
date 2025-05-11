@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profil;
 use App\Models\Users;
 use App\Models\UsersTemp;
 use Illuminate\Http\Request;
@@ -159,8 +160,13 @@ class AuthController extends Controller
             'user_password' => Hash::make($request->user_password),
             'user_foto' => $request->user_foto,
         ];
-
         Users::create($userData);
+
+        $profilData = [
+            'profil_id' => $logic->generateUniqueId('users', 'user_id'),
+            'user_id' => $userData['user_id'],
+        ];
+        Profil::create($profilData);
 
         session([
             'is_user' => true,

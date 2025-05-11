@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LemburController;
 use App\Http\Controllers\PresensiController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RootController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\RootMiddleware;
@@ -44,6 +45,7 @@ Route::middleware([UserMiddleware::class])->group(function () {
     Route::get('profil-saya', [DashboardController::class, 'profil']);
     Route::post('profil/pp', [UserController::class, 'profil_pp']);
     Route::post('profil/nama', [UserController::class, 'profil_nama']);
+    Route::post('profil/informasi', [ProfilController:: class, 'profil_informasi']);
 });
 
 // Root
