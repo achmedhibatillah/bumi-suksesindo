@@ -1,3 +1,25 @@
+<div class="row mb-5">
+    <div class="col-4 col-lg-3 col-xxl-2 py-2 d-flex justify-content-center">
+        <img src="{{ asset('assets/images/dynamic/galeri/gal-1.jpeg') }}" class="rounded shadow-m" style="width:95%" alt="Galeri">
+    </div>
+    <div class="col-4 col-lg-3 col-xxl-2 py-2 d-flex justify-content-center">
+        <img src="{{ asset('assets/images/dynamic/galeri/gal-2.jpeg') }}" class="rounded shadow-m" style="width:95%" alt="Galeri">
+    </div>
+    <div class="col-4 col-lg-3 col-xxl-2 py-2 d-flex justify-content-center">
+        <img src="{{ asset('assets/images/dynamic/galeri/gal-3.jpeg') }}" class="rounded shadow-m" style="width:95%" alt="Galeri">
+    </div>
+    <div class="col-4 col-lg-3 col-xxl-2 py-2 d-flex justify-content-center">
+        <img src="{{ asset('assets/images/dynamic/galeri/gal-4.jpeg') }}" class="rounded shadow-m" style="width:95%" alt="Galeri">
+    </div>
+    <div class="col-4 col-lg-3 col-xxl-2 py-2 d-flex justify-content-center">
+        <img src="{{ asset('assets/images/dynamic/galeri/gal-5.jpeg') }}" class="rounded shadow-m" style="width:95%" alt="Galeri">
+    </div>
+    <div class="col-4 col-lg-3 col-xxl-2 py-2 d-flex justify-content-center">
+        <img src="{{ asset('assets/images/dynamic/galeri/gal-6.jpeg') }}" class="rounded shadow-m" style="width:95%" alt="Galeri">
+    </div>
+</div>
+
+
 <h3 class="text-clr2 fw-bold mb-3">Data Karyawan</h3>
 
 <div class="overflow-x-scroll overflow-y-hidden w-100">

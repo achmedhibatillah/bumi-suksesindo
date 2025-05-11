@@ -1,9 +1,14 @@
 <div class="row m-0 p-0">
     <div class="col-md-6 m-0 p-0 pe-0 pe-md-2">
         <div class="card m-0 p-3 shadow-m rounded-s mb-4">
-            <div class="d-flex gap-3">
-                <img src="{{ asset('uploads/PP-' . $karyawan['user_id'] . '.png') }}" class="rounded-circle square" style="width:100px">
-                <div class="">
+            <div class="d-flex align-items-center gap-3">
+                <div class="d-flex flex-shrink-0 justify-content-center align-items-center position-relative square" style="width:100px">
+                    @if($pp !== null)
+                        <img src="{{ $pp ? asset($pp) : asset('uploads/default.svg') }}" class="img-cover rounded-circle" alt="Profil">
+                    @else 
+                        <img src="{{ asset('assets/images/static/icons/blank-profile.png') }}" class="img-cover rounded-circle">
+                    @endif
+                </div>                <div class="">
                     <h4 class="text-clr2 fw-bold">{{ $karyawan['user_nama'] }}</h4>
                     <p class="fsz-10 text-secondary">{{ $karyawan['user_id'] }}</p>
                 </div>
@@ -13,7 +18,11 @@
                 <p class="m-0 fsz-12">Email :</p>
                 <p class="m-0 mb-3">{{ $karyawan['user_email'] }}</p>
                 <p class="m-0 fsz-12">Tanggal bergabung :</p>
-                <p class="m-0">{{ $karyawan['created_at_tgl'] }}</p>
+                <p class="m-0 mb-3">{{ $karyawan['created_at_tgl'] }}</p>
+                <p class="m-0 fsz-12">Alamat lengkap :</p>
+                <p class="m-0 mb-3">{{ $profil['profil_alamat'] }}</p>
+                <p class="m-0 fsz-12">Nomor telepon :</p>
+                <p class="m-0 mb-3">{{ $profil['profil_telp'] }}</p>
             </div>
         </div>
     </div>

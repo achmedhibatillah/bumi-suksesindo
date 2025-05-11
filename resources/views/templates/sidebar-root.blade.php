@@ -25,7 +25,7 @@
                         <div class="d-flex justify-content-center" style="width:23px;">
                             <i class="fas fa-gear fsz-20"></i>
                         </div>
-                        <p class="menu-resp-text text-light m-0 ms-3">Data Karyawan</p>
+                        <p class="menu-resp-text text-light m-0 ms-3">Dashboard</p>
                     </div>
                 </a>
                 <a class="mb-2 bg-clr2 td-none p-0 py-3 sidebar-button {{  ($page == 'sesi') ? 'sidebar-active' : '' }}" href="{{url('root/sesi')}}"

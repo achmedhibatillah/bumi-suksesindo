@@ -6,6 +6,7 @@ use App\Models\Cuti;
 use App\Models\Kalender;
 use App\Models\Lembur;
 use App\Models\Presensi;
+use App\Models\Profil;
 use App\Models\Sesi;
 use App\Models\User;
 use App\Models\Users;
@@ -60,6 +61,13 @@ class RootController extends Controller
         ];
 
         $karyawanData = Users::getDetailKaryawan($user_id);
+        $informasiKaryawanData = Profil::getProfilByUser($karyawanData['user_id']);
+
+        $filename = 'uploads/PP-' . $karyawanData['user_id'] . '.png';
+        $filepath = public_path($filename);
+        
+        $pp = file_exists($filepath) ? $filename : null; 
+
         $presensiData = Presensi::getFilteredPresensi($user_id, Carbon::now()->subDays(30), Carbon::now());
         $tgl = [
             'tgl_mulai' => Carbon::now()->subDays(30)->toDateString(),
@@ -78,6 +86,8 @@ class RootController extends Controller
         view('templates/sidebar-root', $data) . 
         view('root/karyawan-detail', [
             'karyawan' => $karyawanData,
+            'profil' => $informasiKaryawanData,
+            'pp' => $pp,
             'presensi' => $presensiData,
             'tgl' => $tgl,
         ]) . 
