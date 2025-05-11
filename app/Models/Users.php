@@ -17,6 +17,7 @@ class Users extends Model
         'user_nama',
         'user_password',
         'user_foto',
+        'ut_id',
     ];
 
     public static function getAllKaryawan()

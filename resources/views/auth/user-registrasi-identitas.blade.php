@@ -4,6 +4,7 @@
         <hr>
         <form action="{{ url('registrasi/identitas') }}" method="post">
             @csrf
+            <input type="hidden" name="ut_id" value="{{ $ut->ut_id }}">
             <input type="hidden" name="user_email" value="{{ $ut->ut_email }}">
             <div class="mb-3">
                 <label for="user_nama" class="text-clr2">Nama Lengkap</label>

@@ -148,7 +148,6 @@ class AuthController extends Controller
         ]);
 
         if (!empty(Users::where('user_email', $request->user_email)->first())) {
-            // return 'dah';
             Users::where('user_email', $request->user_email)->delete();
         }
         
@@ -159,6 +158,7 @@ class AuthController extends Controller
             'user_email' => $request->user_email,
             'user_password' => Hash::make($request->user_password),
             'user_foto' => $request->user_foto,
+            'ut_id' => $request->ut_id,
         ];
         Users::create($userData);
 

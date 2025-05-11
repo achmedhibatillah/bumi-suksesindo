@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('user_email', 255)->nullable();
             $table->string('user_password', 255)->nullable();
             $table->string('user_foto', 255)->nullable();
+            $table->string('ut_id', 35);
             $table->timestamps();
+
+            $table->foreign('ut_id')->references('ut_id')->on('users_temp')->onDelete('cascade');
         });
     }
 
