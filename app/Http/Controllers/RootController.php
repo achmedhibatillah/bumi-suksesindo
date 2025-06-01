@@ -216,6 +216,17 @@ class RootController extends Controller
         return redirect()->back()->with('success', 'Anda berhasil menghapus sesi dengan ID #' . $request->sesi_id);
     }
 
+    public function presensi_ubah(Request $request)
+    {
+        $data = [
+            'presensi_status' => $request->presensi_status
+        ];
+
+        Presensi::where('presensi_id', $request->presensi_id)->update($data);
+
+        return redirect()->back()->with('success', 'Berhasil mengubah status presensi.');
+    }
+
 
     public function lembur()
     {
@@ -275,6 +286,21 @@ class RootController extends Controller
             Cuti::where('cuti_id', $request->cuti_id)->update(['cuti_verif' => 2]);
             return redirect()->back()->with('success', 'Pengajuan cuti dari '. $request->user_nama . ' berhasil ditolak.');
         }
+    }
+
+    public function cuti_delete(Request $request)
+    {
+        $cuti = Cuti::where('cuti_id', $request->cuti_id)->exists();
+
+        if ($cuti == false) {
+            return redirect()->back()->with('error', 'Data cuti tidak ditemukan.');
+        }
+
+        File::delete(public_path('uploads/CTI-' . $request->cuti_id . '.pdf'));
+
+        Cuti::where('cuti_id', $request->cuti_id)->delete();
+        
+        return redirect()->back()->with('success', 'Data cuti berhasil dihapus.');
     }
 
     public function kalender(Request $request)

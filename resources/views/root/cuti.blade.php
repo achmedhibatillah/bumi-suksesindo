@@ -56,6 +56,7 @@
                                                 <p class="m-0">Status : {{ $x['cuti_status'] }}</p>
                                                 <p class="m-0">Alasan : {{ $x['cuti_alasan'] }}</p>
                                                 <a href="{{ url('uploads/CTI-' . $x['cuti_id'] . '.pdf') }}" target="_blank" class="td-hover mt-3 d-block">Lihat file <i class="fas fa-file-pdf"></i></a>
+                                                <a href="#" class="btn btn-danger mt-3 rounded-pill" data-bs-toggle="modal" data-bs-target="#modalHapusCuti-{{ $x['cuti_id'] }}">Hapus</a>
                                             </div>
                                             <div class="modal-footer">
                                                 <form action="{{ url('root/cuti/response') }}" method="post">
@@ -71,6 +72,28 @@
                                                     <input type="hidden" name="cuti_id" value="{{ $x['cuti_id'] }}">
                                                     <input type="hidden" name="user_nama" value="{{ $x['user_nama'] }}">
                                                     <button class="btn btn-success">Setujui</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modalHapusCuti-{{ $x['cuti_id'] }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                        <div class="modal-content border-light rounded-m">
+                                            <div class="modal-header bg-clr2 text-light">
+                                                <h3 class="modal-title fw-bold">Hapus Cuti</h3>
+                                                <button type="button" class="ms-auto hover bg-clr2 border-light text-light rounded-circle he-28 we-28" data-bs-dismiss="modal" aria-label="Close">x</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="m-0">Apakah Anda yakin ingin menghapus data cuti ini?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="#" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalTinjau{{ $x['cuti_id'] }}">Batal</a>
+                                                <form action="{{ url('root/cuti/delete') }}" method="post">
+                                                    @csrf 
+                                                    <input type="hidden" name="cuti_id" value="{{ $x['cuti_id'] }}">
+                                                    <button type="submit" class="btn btn-danger">Hapus</button>
                                                 </form>
                                             </div>
                                         </div>

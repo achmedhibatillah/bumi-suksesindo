@@ -61,6 +61,8 @@ Route::middleware([RootMiddleware::class])->group(function () {
 
     Route::get('root/sesi', [RootController::class, 'sesi']);
     Route::get('root/sesi/{slug}', [RootController::class, 'sesi_detail']);
+    
+    Route::post('root/presensi/ubah', [RootController::class, 'presensi_ubah']);
 
     Route::post('root/sesi/add', [RootController::class, 'sesi_add']);
     Route::post('root/sesi/del', [RootController::class, 'sesi_del']);
@@ -70,6 +72,7 @@ Route::middleware([RootMiddleware::class])->group(function () {
 
     Route::get('root/cuti', [RootController::class, 'cuti']);
     Route::post('root/cuti/response', [RootController::class, 'cuti_response']); 
+    Route::post('root/cuti/delete', [RootController::class, 'cuti_delete']);
 
     Route::get('root/kalender', [RootController::class, 'kalender']);
     Route::post('root/kalender/add', [RootController::class, 'kalender_add']);
